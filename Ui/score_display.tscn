@@ -1,8 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://dt0g4kyfu8g57"]
+[gd_scene load_steps=6 format=3 uid="uid://dt0g4kyfu8g57"]
 
 [ext_resource type="Script" path="res://Ui/score_display.gd" id="1_n3jj6"]
+[ext_resource type="FontFile" uid="uid://bljgri75cp4v4" path="res://assets/fonts/Tiny5-Regular.ttf" id="2_5xxgu"]
+[ext_resource type="Texture2D" uid="uid://ddkjvx0i7muup" path="res://assets/ui/score_bg.png" id="2_wmffv"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2mmj2"]
+[sub_resource type="LabelSettings" id="LabelSettings_7jpi7"]
+font = ExtResource("2_5xxgu")
+font_color = Color(0.133333, 0.12549, 0.203922, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6cq86"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -13,31 +19,36 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_n3jj6")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-layout_mode = 0
+[node name="Texture" type="TextureRect" parent="."]
+layout_mode = 1
 offset_right = 156.0
 offset_bottom = 87.0
-color = Color(0.660712, 0, 0.167705, 0.396078)
+texture = ExtResource("2_wmffv")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect"]
+[node name="MarginContainer" type="MarginContainer" parent="Texture"]
 layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_top = -35.0
-offset_right = 97.0
-offset_bottom = 35.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_left = 10
 
-[node name="Style" type="Label" parent="ColorRect/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Texture/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+alignment = 1
+
+[node name="Style" type="Label" parent="Texture/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "STYLE:"
+label_settings = SubResource("LabelSettings_7jpi7")
 
-[node name="HSeparator2" type="HSeparator" parent="ColorRect/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="Texture/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/separation = 16
-theme_override_styles/separator = SubResource("StyleBoxEmpty_2mmj2")
+theme_override_styles/separator = SubResource("StyleBoxEmpty_6cq86")
 
-[node name="Style_Combo" type="Label" parent="ColorRect/VBoxContainer"]
+[node name="Style_Combo" type="Label" parent="Texture/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "COMBO:"
+label_settings = SubResource("LabelSettings_7jpi7")

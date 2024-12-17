@@ -1,7 +1,7 @@
 extends Control
 
-@onready var style = $ColorRect/VBoxContainer/Style
-@onready var style_combo = $ColorRect/VBoxContainer/Style_Combo
+@onready var style = $Texture/MarginContainer/VBoxContainer/Style
+@onready var style_combo = $Texture/MarginContainer/VBoxContainer/Style_Combo
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

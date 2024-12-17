@@ -1,10 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://wc23oia3n6p4"]
+[gd_scene load_steps=8 format=3 uid="uid://wc23oia3n6p4"]
 
-[ext_resource type="Script" path="res://objects/mechanics/main.gd" id="1_ewkc7"]
 [ext_resource type="Script" path="res://objects/player/crosshair.gd" id="2_vb2iv"]
 [ext_resource type="Texture2D" uid="uid://d4dg06m7vsig3" path="res://icon.svg" id="3_dojtt"]
 [ext_resource type="PackedScene" uid="uid://b6etsfjlk68g7" path="res://objects/player/player.tscn" id="4_hjfkt"]
-[ext_resource type="Script" path="res://objects/mechanics/terrain.gd" id="5_4imqo"]
+
+[sub_resource type="GDScript" id="GDScript_k0igs"]
+script/source = "extends StaticBody2D
+"
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_wucn5"]
 
@@ -17,7 +19,6 @@ a = Vector2(80, 0)
 b = Vector2(-80, 0)
 
 [node name="MAIN" type="Node2D"]
-script = ExtResource("1_ewkc7")
 
 [node name="Crosshair" type="Node2D" parent="."]
 script = ExtResource("2_vb2iv")
@@ -33,7 +34,7 @@ texture = ExtResource("3_dojtt")
 position = Vector2(157, 172)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Pausable"]
-script = ExtResource("5_4imqo")
+script = SubResource("GDScript_k0igs")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Pausable/StaticBody2D"]
 position = Vector2(0, 320)
