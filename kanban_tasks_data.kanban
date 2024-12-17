@@ -1,0 +1,101 @@
+{
+	"categories": [
+		{
+			"uuid": "c11a446a-8f32-470c-a246-41c72d56416a",
+			"title": "Task",
+			"color": "c279ff"
+		}
+	],
+	"stages": [
+		{
+			"uuid": "d0061f7e-fb72-4cef-8248-78b9e94ec641",
+			"title": "Todo",
+			"tasks": [
+				"7fc52ba6-378e-4dc9-a961-691d0421387e",
+				"484a1be9-9cae-47fb-bf0b-3205d3bca2e2",
+				"dbaff026-af0f-4d7d-a658-75e3e7f3251c",
+				"ff2b3ade-7645-411c-887a-4946789cf931"
+			]
+		},
+		{
+			"uuid": "c2ea4c4b-bdb7-4a7d-bea8-c32d35ecb89f",
+			"title": "Doing",
+			"tasks": [
+				"49199a06-4a01-4da3-85ba-51fbfb808f56"
+			]
+		},
+		{
+			"uuid": "7f3f6571-8c00-4907-9f1d-11e3a5db62ae",
+			"title": "Done",
+			"tasks": []
+		}
+	],
+	"tasks": [
+		{
+			"uuid": "49199a06-4a01-4da3-85ba-51fbfb808f56",
+			"title": "player",
+			"description": "",
+			"category": "c11a446a-8f32-470c-a246-41c72d56416a",
+			"steps": [
+				{
+					"details": "movement",
+					"done": true
+				},
+				{
+					"details": "attack",
+					"done": false
+				},
+				{
+					"details": "timestop",
+					"done": true
+				}
+			]
+		},
+		{
+			"uuid": "7fc52ba6-378e-4dc9-a961-691d0421387e",
+			"title": "enemies",
+			"description": "",
+			"category": "c11a446a-8f32-470c-a246-41c72d56416a",
+			"steps": []
+		},
+		{
+			"uuid": "484a1be9-9cae-47fb-bf0b-3205d3bca2e2",
+			"title": "campfire",
+			"description": "",
+			"category": "c11a446a-8f32-470c-a246-41c72d56416a",
+			"steps": [
+				{
+					"details": "hp",
+					"done": false
+				}
+			]
+		},
+		{
+			"uuid": "dbaff026-af0f-4d7d-a658-75e3e7f3251c",
+			"title": "spawning",
+			"description": "",
+			"category": "c11a446a-8f32-470c-a246-41c72d56416a",
+			"steps": []
+		},
+		{
+			"uuid": "ff2b3ade-7645-411c-887a-4946789cf931",
+			"title": "level",
+			"description": "",
+			"category": "c11a446a-8f32-470c-a246-41c72d56416a",
+			"steps": []
+		}
+	],
+	"layout": {
+		"columns": [
+			[
+				"d0061f7e-fb72-4cef-8248-78b9e94ec641"
+			],
+			[
+				"c2ea4c4b-bdb7-4a7d-bea8-c32d35ecb89f"
+			],
+			[
+				"7f3f6571-8c00-4907-9f1d-11e3a5db62ae"
+			]
+		]
+	}
+}
