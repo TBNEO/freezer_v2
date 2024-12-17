@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://c0nt2ei1ryy4f"]
+[gd_scene load_steps=5 format=3 uid="uid://c0nt2ei1ryy4f"]
 
 [ext_resource type="Script" path="res://scenes/pause_menu.gd" id="1_nc0aw"]
+[ext_resource type="Texture2D" uid="uid://d3to3dot8wib2" path="res://assets/ui/resume_button.png" id="2_ls71n"]
+[ext_resource type="Texture2D" uid="uid://f2s3aj45qd3y" path="res://assets/ui/options_button.png" id="3_rbyb5"]
+[ext_resource type="Texture2D" uid="uid://b736su48v0vho" path="res://assets/ui/exit_button.png" id="4_wv61u"]
 
 [node name="PauseMenu" type="Control"]
 layout_mode = 3
@@ -27,20 +30,20 @@ layout_mode = 2
 text = "PAUSED"
 horizontal_alignment = 1
 
-[node name="resume" type="Button" parent="VBoxContainer"]
+[node name="resume" type="TextureButton" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-text = "RESUME"
+texture_normal = ExtResource("2_ls71n")
 
-[node name="options" type="Button" parent="VBoxContainer"]
+[node name="options" type="TextureButton" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-text = "OPTIONS"
+texture_normal = ExtResource("3_rbyb5")
 
-[node name="exit to title" type="Button" parent="VBoxContainer"]
+[node name="exit to title" type="TextureButton" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-text = "EXIT TO TITLE"
+texture_normal = ExtResource("4_wv61u")
 
 [connection signal="button_down" from="VBoxContainer/resume" to="." method="_on_resume_button_down"]
 [connection signal="button_down" from="VBoxContainer/options" to="." method="_on_options_button_down"]
