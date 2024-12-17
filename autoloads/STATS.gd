@@ -11,3 +11,6 @@ var Crosshair
 
 func _init():
 	process_priority = -1
+
+func style_add(amount: int):
+	Style += amount * StyleBoost

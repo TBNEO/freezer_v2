@@ -19,6 +19,7 @@ const MAXJUMPBUFFER = 6
 var mousedir = Vector2.LEFT
 
 @onready var ray_cast_2d = $RayCast2D
+@onready var score_display = $CanvasLayer/Control
 
 func _ready():
 	if Stats.is_node_ready():
