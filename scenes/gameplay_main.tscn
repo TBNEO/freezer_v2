@@ -1,0 +1,62 @@
+[gd_scene load_steps=9 format=3 uid="uid://wc23oia3n6p4"]
+
+[ext_resource type="Script" path="res://objects/mechanics/main.gd" id="1_ewkc7"]
+[ext_resource type="Script" path="res://objects/player/crosshair.gd" id="2_vb2iv"]
+[ext_resource type="Texture2D" uid="uid://d4dg06m7vsig3" path="res://icon.svg" id="3_dojtt"]
+[ext_resource type="PackedScene" uid="uid://b6etsfjlk68g7" path="res://objects/player/player.tscn" id="4_hjfkt"]
+[ext_resource type="Script" path="res://objects/mechanics/terrain.gd" id="5_4imqo"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_wucn5"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_21xru"]
+a = Vector2(-80, 0)
+b = Vector2(80, 0)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_wnnuo"]
+a = Vector2(80, 0)
+b = Vector2(-80, 0)
+
+[node name="MAIN" type="Node2D"]
+script = ExtResource("1_ewkc7")
+
+[node name="Crosshair" type="Node2D" parent="."]
+script = ExtResource("2_vb2iv")
+
+[node name="Sprite2D" type="Sprite2D" parent="Crosshair"]
+modulate = Color(1, 0.415686, 0.443137, 1)
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("3_dojtt")
+
+[node name="Pausable" type="Node" parent="."]
+
+[node name="PLAYER" parent="Pausable" instance=ExtResource("4_hjfkt")]
+position = Vector2(157, 172)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Pausable"]
+script = ExtResource("5_4imqo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pausable/StaticBody2D"]
+position = Vector2(0, 320)
+shape = SubResource("WorldBoundaryShape2D_wucn5")
+
+[node name="platformA" type="CollisionShape2D" parent="Pausable/StaticBody2D"]
+position = Vector2(0, 165)
+shape = SubResource("SegmentShape2D_21xru")
+one_way_collision = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Pausable/StaticBody2D/platformA"]
+position = Vector2(-3.8147e-06, -0.5)
+scale = Vector2(1.25, 0.0234375)
+texture = ExtResource("3_dojtt")
+
+[node name="platformB" type="CollisionShape2D" parent="Pausable/StaticBody2D"]
+position = Vector2(320, 165)
+shape = SubResource("SegmentShape2D_wnnuo")
+one_way_collision = true
+
+[node name="Sprite2D2" type="Sprite2D" parent="Pausable/StaticBody2D/platformB"]
+position = Vector2(-0.500163, 0.249999)
+scale = Vector2(1.21094, 0.0273437)
+texture = ExtResource("3_dojtt")
+
+[node name="EnemyParent" type="Node" parent="Pausable"]
