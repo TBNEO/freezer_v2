@@ -19,6 +19,14 @@ b = Vector2(-80, 0)
 [node name="MAIN" type="Node2D"]
 script = ExtResource("1_pual7")
 
+[node name="Crosshair" type="Node2D" parent="."]
+script = ExtResource("5_bnup1")
+
+[node name="Sprite2D" type="Sprite2D" parent="Crosshair"]
+modulate = Color(1, 0.415686, 0.443137, 1)
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("2_aiinw")
+
 [node name="Pausable" type="Node" parent="."]
 
 [node name="PLAYER" parent="Pausable" instance=ExtResource("1_6m8t6")]
@@ -28,11 +36,11 @@ position = Vector2(157, 172)
 script = ExtResource("2_wbyfg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Pausable/StaticBody2D"]
-position = Vector2(0, 182)
+position = Vector2(0, 320)
 shape = SubResource("WorldBoundaryShape2D_wucn5")
 
 [node name="platformA" type="CollisionShape2D" parent="Pausable/StaticBody2D"]
-position = Vector2(0, 83)
+position = Vector2(0, 165)
 shape = SubResource("SegmentShape2D_21xru")
 one_way_collision = true
 
@@ -42,7 +50,7 @@ scale = Vector2(1.25, 0.0234375)
 texture = ExtResource("2_aiinw")
 
 [node name="platformB" type="CollisionShape2D" parent="Pausable/StaticBody2D"]
-position = Vector2(320, 83)
+position = Vector2(320, 165)
 shape = SubResource("SegmentShape2D_wnnuo")
 one_way_collision = true
 
@@ -52,11 +60,3 @@ scale = Vector2(1.21094, 0.0273437)
 texture = ExtResource("2_aiinw")
 
 [node name="EnemyParent" type="Node" parent="Pausable"]
-
-[node name="Crosshair" type="Node2D" parent="."]
-script = ExtResource("5_bnup1")
-
-[node name="Sprite2D" type="Sprite2D" parent="Crosshair"]
-modulate = Color(1, 0.415686, 0.443137, 1)
-scale = Vector2(0.05, 0.05)
-texture = ExtResource("2_aiinw")

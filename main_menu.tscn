@@ -1,0 +1,45 @@
+[gd_scene load_steps=2 format=3 uid="uid://ckqgr58khpyk1"]
+
+[ext_resource type="Script" path="res://Ui/main_menu.gd" id="1_6dslb"]
+
+[node name="MAIN MENU" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6dslb")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Wild Jam Thing (name wip)"
+horizontal_alignment = 1
+
+[node name="START" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "START"
+
+[node name="OPTIONS" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "OPTIONS"
+
+[node name="QUIT" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "QUIT"
+
+[connection signal="button_down" from="VBoxContainer/START" to="." method="_on_start_button_down"]
+[connection signal="button_down" from="VBoxContainer/OPTIONS" to="." method="_on_options_button_down"]
+[connection signal="button_down" from="VBoxContainer/QUIT" to="." method="_on_quit_button_down"]
