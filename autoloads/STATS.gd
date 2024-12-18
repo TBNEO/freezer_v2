@@ -6,7 +6,8 @@ var Healthlock := 0.0
 
 var Style := 0
 var StyleBoost := 1
-var StyleDecay := 150
+var StyleDecay := 240
+const MAX_STYLEDECAY = 240
 
 var Crosshair
 

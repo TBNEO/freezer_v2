@@ -35,5 +35,5 @@ func _on_fly_time_timeout() -> void:
 func die():
 	Stats.style_add(20)
 	Stats.StyleBoost += 1
-	Stats.StyleDecay = 120
+	Stats.StyleDecay = Stats.MAX_STYLEDECAY
 	queue_free()
