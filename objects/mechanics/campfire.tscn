@@ -1,11 +1,10 @@
 [gd_scene load_steps=3 format=3 uid="uid://cmen2axkfrqpl"]
 
-[ext_resource type="Texture2D" uid="uid://d4dg06m7vsig3" path="res://icon.svg" id="1_ojvie"]
+[ext_resource type="Texture2D" uid="uid://chfqrbuhx2iol" path="res://icon.svg" id="1_ojvie"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jpekp"]
 
 [node name="CampfirePlaceholder" type="Node2D" groups=["campfire"]]
-position = Vector2(309, 128)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 self_modulate = Color(1, 0, 0.129412, 1)
