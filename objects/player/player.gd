@@ -21,13 +21,10 @@ var mousedir = Vector2.LEFT
 @onready var ray_cast_2d = $RayCast2D
 @onready var score_display = $CanvasLayer/Control
 
-func _ready():
-	if Stats.is_node_ready():
-		ray_cast_2d.target_position = global_position.direction_to(Stats.Crosshair.global_position)*200
-
 func _process(delta):
 	if Stats.is_node_ready():
 		ray_cast_2d.target_position = global_position.direction_to(Stats.Crosshair.global_position)*200
+		ray_cast_2d.enabled = 
 	var last_dashtime = dashtime
 	buffer_process()
 	if last_dashtime > 0 and dashtime == 0:

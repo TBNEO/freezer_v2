@@ -1,13 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://p54hoqet1gr4"]
+[gd_scene load_steps=3 format=3 uid="uid://c4pixchkiv7gy"]
 
-[ext_resource type="Script" path="res://scenes/enemy/nav_enemy.gd" id="1_0o0v7"]
+[ext_resource type="Script" path="res://objects/enemy/nav_enemy.gd" id="1_35iyq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_augee"]
-size = Vector2(38, 40)
+size = Vector2(32, 32)
 
 [node name="nav_enemy" type="CharacterBody2D"]
-scale = Vector2(0.4, 0.4)
-script = ExtResource("1_0o0v7")
+collision_layer = 4
+script = ExtResource("1_35iyq")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_left = -20.0
@@ -40,6 +40,6 @@ light_mask = 0
 visibility_layer = 32
 target_position = Vector2(-153, -159)
 
-[connection signal="timeout" from="navigationtimer" to="." method="_on_navigationtimer_timeout"]
 [connection signal="timeout" from="navigationtimer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="navigationtimer" to="." method="_on_navigationtimer_timeout"]
 [connection signal="timeout" from="jump_timer" to="." method="_on_jump_timer_timeout"]

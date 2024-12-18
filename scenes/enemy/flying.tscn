@@ -1,13 +1,13 @@
 [gd_scene load_steps=3 format=3 uid="uid://dhj5g0b46h7jj"]
 
-[ext_resource type="Script" path="res://scenes/enemy/flying.gd" id="1_uyuew"]
+[ext_resource type="Script" path="res://objects/enemy/flying.gd" id="1_p58uc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yf0jm"]
-size = Vector2(40, 40)
+size = Vector2(32, 32)
 
 [node name="Flying" type="CharacterBody2D"]
-scale = Vector2(0.4, 0.4)
-script = ExtResource("1_uyuew")
+collision_layer = 4
+script = ExtResource("1_p58uc")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_right = 40.0
