@@ -69,4 +69,12 @@ position = Vector2(157, 172)
 
 [node name="EnemyParent" type="Node" parent="Pausable"]
 
+[node name="CampfirePlaceholder" type="Node2D" parent="Pausable" groups=["campfire"]]
+position = Vector2(309, 128)
+
+[node name="Sprite2D" type="Sprite2D" parent="Pausable/CampfirePlaceholder"]
+self_modulate = Color(1, 0, 0.129412, 1)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("3_dojtt")
+
 [node name="spawner" parent="." instance=ExtResource("4_uru2h")]
