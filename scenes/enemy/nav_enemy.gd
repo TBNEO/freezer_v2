@@ -15,7 +15,7 @@ const JUMP_VELOCITY = -700.0
 
 @onready var navigation_agent_2d: NavigationAgent2D = $NavigationAgent2D
 
-@onready var player = get_tree().get_first_node_in_group("player")
+@onready var player = get_tree().get_first_node_in_group("campfire")
 
 func _physics_process(delta: float) -> void:
 	
