@@ -22,7 +22,7 @@ size = Vector2(160, 18)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mo130"]
 size = Vector2(156, 18)
 
-[node name="MAIN" type="Node2D" groups=["main"]]
+[node name="MAIN" type="Node2D"]
 
 [node name="Crosshair" type="Node2D" parent="."]
 script = ExtResource("2_vb2iv")
@@ -32,7 +32,7 @@ modulate = Color(1, 0.415686, 0.443137, 1)
 scale = Vector2(0.05, 0.05)
 texture = ExtResource("3_dojtt")
 
-[node name="Pausable" type="Node" parent="."]
+[node name="Pausable" type="Node" parent="." groups=["main"]]
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="Pausable"]
 navigation_polygon = SubResource("NavigationPolygon_yrmp6")
@@ -67,6 +67,4 @@ texture = ExtResource("3_dojtt")
 [node name="PLAYER" parent="Pausable/NavigationRegion2D" instance=ExtResource("4_hjfkt")]
 position = Vector2(157, 172)
 
-[node name="EnemyParent" type="Node" parent="Pausable"]
-
-[node name="spawner" parent="." instance=ExtResource("4_uru2h")]
+[node name="spawner" parent="Pausable" instance=ExtResource("4_uru2h")]
