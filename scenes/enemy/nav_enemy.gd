@@ -15,7 +15,7 @@ const JUMP_VELOCITY = -700.0
 
 @onready var navigation_agent_2d: NavigationAgent2D = $NavigationAgent2D
 
-@onready var player = get_tree().get_first_node_in_group("campfire")
+@onready var campfire = get_tree().get_first_node_in_group("campfire")
 
 func _physics_process(delta: float) -> void:
 	
@@ -42,7 +42,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func _on_navigationtimer_timeout() -> void:
-	navigation_agent_2d.target_position = player.global_position
+	navigation_agent_2d.target_position = campfire.global_position
 
 func _on_jump_timer_timeout() -> void:
 	jump_timer = true
