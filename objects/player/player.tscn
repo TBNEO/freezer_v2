@@ -1,22 +1,20 @@
-[gd_scene load_steps=6 format=3 uid="uid://b6etsfjlk68g7"]
+[gd_scene load_steps=5 format=3 uid="uid://b6etsfjlk68g7"]
 
 [ext_resource type="Texture2D" uid="uid://d4dg06m7vsig3" path="res://icon.svg" id="1_4eoip"]
 [ext_resource type="Script" path="res://objects/player/player.gd" id="1_6tiru"]
 [ext_resource type="PackedScene" uid="uid://dt0g4kyfu8g57" path="res://Ui/score_display.tscn" id="3_dtgn7"]
-[ext_resource type="PackedScene" uid="uid://cbcnl63vws4ny" path="res://objects/hitboxes/hurtbox_player.tscn" id="4_dupvm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n4k3p"]
-size = Vector2(32, 32)
+size = Vector2(16, 16)
 
 [node name="PLAYER" type="CharacterBody2D" groups=["player"]]
-collision_layer = 2
 script = ExtResource("1_6tiru")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_n4k3p")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.25, 0.25)
+scale = Vector2(0.125, 0.125)
 texture = ExtResource("1_4eoip")
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -33,5 +31,3 @@ collide_with_bodies = false
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Control" parent="CanvasLayer" instance=ExtResource("3_dtgn7")]
-
-[node name="HurtboxPlayer" parent="." instance=ExtResource("4_dupvm")]
