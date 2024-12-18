@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://g5k6dw0rh36w"]
+
+[ext_resource type="Script" path="res://scenes/spawner/spawner.gd" id="1_rsnf4"]
+
+[node name="spawner" type="Node2D" node_paths=PackedStringArray("spawn_points")]
+script = ExtResource("1_rsnf4")
+spawn_points = [NodePath("Marker2D"), NodePath("Marker2D2"), NodePath("Marker2D3")]
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(3, 63)
+
+[node name="Marker2D2" type="Marker2D" parent="."]
+position = Vector2(1, 207)
+
+[node name="Marker2D3" type="Marker2D" parent="."]
+position = Vector2(634, 67)
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

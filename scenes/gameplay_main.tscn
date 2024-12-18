@@ -1,8 +1,14 @@
-[gd_scene load_steps=8 format=3 uid="uid://wc23oia3n6p4"]
+[gd_scene load_steps=10 format=3 uid="uid://wc23oia3n6p4"]
 
 [ext_resource type="Script" path="res://objects/player/crosshair.gd" id="2_vb2iv"]
 [ext_resource type="Texture2D" uid="uid://d4dg06m7vsig3" path="res://icon.svg" id="3_dojtt"]
 [ext_resource type="PackedScene" uid="uid://b6etsfjlk68g7" path="res://objects/player/player.tscn" id="4_hjfkt"]
+[ext_resource type="PackedScene" uid="uid://g5k6dw0rh36w" path="res://scenes/spawner/spawner.tscn" id="4_uru2h"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_yrmp6"]
+vertices = PackedVector2Array(408, 184, 631.031, 314.922, -153.031, 309.07, 232, 184, 90, 184, 232, 146, -90, 184, -153.961, 10.9688, -90, 146, 631.961, 9.02344, 408, 146, 90, 146)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(3, 2, 4, 5), PackedInt32Array(6, 4, 2), PackedInt32Array(6, 2, 7, 8), PackedInt32Array(9, 1, 0, 10), PackedInt32Array(7, 9, 10, 5), PackedInt32Array(5, 4, 11), PackedInt32Array(7, 5, 11), PackedInt32Array(7, 11, 8)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-164, 1, -163, 319, 641, 325, 642, -1)])
 
 [sub_resource type="GDScript" id="GDScript_k0igs"]
 script/source = "extends StaticBody2D
@@ -10,15 +16,13 @@ script/source = "extends StaticBody2D
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_wucn5"]
 
-[sub_resource type="SegmentShape2D" id="SegmentShape2D_21xru"]
-a = Vector2(-80, 0)
-b = Vector2(80, 0)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_02523"]
+size = Vector2(160, 18)
 
-[sub_resource type="SegmentShape2D" id="SegmentShape2D_wnnuo"]
-a = Vector2(80, 0)
-b = Vector2(-80, 0)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mo130"]
+size = Vector2(156, 18)
 
-[node name="MAIN" type="Node2D"]
+[node name="MAIN" type="Node2D" groups=["main"]]
 
 [node name="Crosshair" type="Node2D" parent="."]
 script = ExtResource("2_vb2iv")
@@ -30,34 +34,39 @@ texture = ExtResource("3_dojtt")
 
 [node name="Pausable" type="Node" parent="."]
 
-[node name="PLAYER" parent="Pausable" instance=ExtResource("4_hjfkt")]
-position = Vector2(157, 172)
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="Pausable"]
+navigation_polygon = SubResource("NavigationPolygon_yrmp6")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Pausable"]
+[node name="StaticBody2D" type="StaticBody2D" parent="Pausable/NavigationRegion2D"]
 script = SubResource("GDScript_k0igs")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Pausable/StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pausable/NavigationRegion2D/StaticBody2D"]
 position = Vector2(0, 320)
 shape = SubResource("WorldBoundaryShape2D_wucn5")
 
-[node name="platformA" type="CollisionShape2D" parent="Pausable/StaticBody2D"]
+[node name="platformA" type="CollisionShape2D" parent="Pausable/NavigationRegion2D/StaticBody2D"]
 position = Vector2(0, 165)
-shape = SubResource("SegmentShape2D_21xru")
+shape = SubResource("RectangleShape2D_02523")
 one_way_collision = true
 
-[node name="Sprite2D" type="Sprite2D" parent="Pausable/StaticBody2D/platformA"]
+[node name="Sprite2D" type="Sprite2D" parent="Pausable/NavigationRegion2D/StaticBody2D/platformA"]
 position = Vector2(-3.8147e-06, -0.5)
-scale = Vector2(1.25, 0.0234375)
+scale = Vector2(1.25, 0.132812)
 texture = ExtResource("3_dojtt")
 
-[node name="platformB" type="CollisionShape2D" parent="Pausable/StaticBody2D"]
+[node name="platformB" type="CollisionShape2D" parent="Pausable/NavigationRegion2D/StaticBody2D"]
 position = Vector2(320, 165)
-shape = SubResource("SegmentShape2D_wnnuo")
+shape = SubResource("RectangleShape2D_mo130")
 one_way_collision = true
 
-[node name="Sprite2D2" type="Sprite2D" parent="Pausable/StaticBody2D/platformB"]
+[node name="Sprite2D2" type="Sprite2D" parent="Pausable/NavigationRegion2D/StaticBody2D/platformB"]
 position = Vector2(-0.500163, 0.249999)
-scale = Vector2(1.21094, 0.0273437)
+scale = Vector2(1.21094, 0.152344)
 texture = ExtResource("3_dojtt")
+
+[node name="PLAYER" parent="Pausable/NavigationRegion2D" instance=ExtResource("4_hjfkt")]
+position = Vector2(157, 172)
 
 [node name="EnemyParent" type="Node" parent="Pausable"]
+
+[node name="spawner" parent="." instance=ExtResource("4_uru2h")]
