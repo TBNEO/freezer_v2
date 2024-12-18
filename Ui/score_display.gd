@@ -14,6 +14,7 @@ func _process(delta):
 	if !Stats.is_node_ready(): return
 	style.text = "STYLE: " + str(Stats.Style)
 	style_combo.text = "MULTIPLIER: " + str(Stats.StyleBoost) + "x"
+	progress_bar.max_value = Stats.MAX_STYLEDECAY
 	progress_bar.value = Stats.StyleDecay
 	
 	

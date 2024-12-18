@@ -1,5 +1,6 @@
-[gd_scene load_steps=11 format=3 uid="uid://wc23oia3n6p4"]
+[gd_scene load_steps=12 format=3 uid="uid://wc23oia3n6p4"]
 
+[ext_resource type="Script" path="res://objects/mechanics/main.gd" id="1_ox4y7"]
 [ext_resource type="Script" path="res://objects/player/crosshair.gd" id="2_vb2iv"]
 [ext_resource type="Texture2D" uid="uid://d4dg06m7vsig3" path="res://icon.svg" id="3_dojtt"]
 [ext_resource type="PackedScene" uid="uid://b6etsfjlk68g7" path="res://objects/player/player.tscn" id="4_hjfkt"]
@@ -24,6 +25,7 @@ size = Vector2(160, 18)
 size = Vector2(156, 18)
 
 [node name="MAIN" type="Node2D" groups=["main"]]
+script = ExtResource("1_ox4y7")
 
 [node name="Crosshair" type="Node2D" parent="."]
 script = ExtResource("2_vb2iv")
@@ -68,8 +70,6 @@ texture = ExtResource("3_dojtt")
 [node name="PLAYER" parent="Pausable/NavigationRegion2D" instance=ExtResource("4_hjfkt")]
 position = Vector2(157, 172)
 
-[node name="EnemyParent" type="Node" parent="Pausable"]
-
 [node name="CampfirePlaceholder" parent="Pausable" instance=ExtResource("4_jhufe")]
 
-[node name="spawner" parent="." instance=ExtResource("4_uru2h")]
+[node name="spawner" parent="Pausable" instance=ExtResource("4_uru2h")]
