@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://wc23oia3n6p4"]
+[gd_scene load_steps=11 format=3 uid="uid://wc23oia3n6p4"]
 
 [ext_resource type="Script" path="res://objects/player/crosshair.gd" id="2_vb2iv"]
 [ext_resource type="Texture2D" uid="uid://d4dg06m7vsig3" path="res://icon.svg" id="3_dojtt"]
 [ext_resource type="PackedScene" uid="uid://b6etsfjlk68g7" path="res://objects/player/player.tscn" id="4_hjfkt"]
+[ext_resource type="PackedScene" uid="uid://cmen2axkfrqpl" path="res://objects/mechanics/campfire.tscn" id="4_jhufe"]
 [ext_resource type="PackedScene" uid="uid://g5k6dw0rh36w" path="res://scenes/spawner/spawner.tscn" id="4_uru2h"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_yrmp6"]
@@ -69,12 +70,6 @@ position = Vector2(157, 172)
 
 [node name="EnemyParent" type="Node" parent="Pausable"]
 
-[node name="CampfirePlaceholder" type="Node2D" parent="Pausable" groups=["campfire"]]
-position = Vector2(309, 128)
-
-[node name="Sprite2D" type="Sprite2D" parent="Pausable/CampfirePlaceholder"]
-self_modulate = Color(1, 0, 0.129412, 1)
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("3_dojtt")
+[node name="CampfirePlaceholder" parent="Pausable" instance=ExtResource("4_jhufe")]
 
 [node name="spawner" parent="." instance=ExtResource("4_uru2h")]

@@ -23,10 +23,11 @@ var mousedir = Vector2.LEFT
 
 func _process(delta):
 	if Stats.is_node_ready():
-		ray_cast_2d.target_position = global_position.direction_to(Stats.Crosshair.global_position)*200
+		ray_cast_2d.target_position = global_position.direction_to(Stats.Crosshair.global_position)*500
 		ray_cast_2d.enabled = Stats.Crosshair.firing
 		if ray_cast_2d.is_colliding():
 			ray_cast_2d.get_collider().die()
+			
 	var last_dashtime = dashtime
 	buffer_process()
 	if last_dashtime > 0 and dashtime == 0:

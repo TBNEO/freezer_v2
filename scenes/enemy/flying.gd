@@ -33,4 +33,7 @@ func _on_fly_time_timeout() -> void:
 	can_fly = true
 
 func die():
+	Stats.style_add(20)
+	Stats.StyleBoost += 1
+	Stats.StyleDecay = 120
 	queue_free()

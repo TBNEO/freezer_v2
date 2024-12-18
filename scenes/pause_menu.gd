@@ -3,7 +3,7 @@ extends Control
 signal resume
 
 func _on_resume_button_down():
-	emit_signal("resume")
+	resume.emit()
 
 
 func _on_options_button_down():
