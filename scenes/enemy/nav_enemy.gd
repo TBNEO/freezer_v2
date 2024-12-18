@@ -48,7 +48,4 @@ func _on_jump_timer_timeout() -> void:
 	jump_timer = true
 
 func die():
-	Stats.style_add(10)
-	Stats.StyleBoost += 1
-	Stats.StyleDecay = Stats.MAX_STYLEDECAY
 	queue_free()

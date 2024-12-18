@@ -1,39 +1,77 @@
 extends CharacterBody2D
 
-const  SPEED = 100
-const fly = -200.0
+var SPEED :int= 100
+var dmg:float
+var knockback : Vector2
 
-var can_fly := true
 
-@onready var navigation_agent_2d: NavigationAgent2D = $NavigationAgent2D
-@onready var ray_cast_2d: RayCast2D = $RayCast2D
 
-@onready var campfire = get_tree().get_first_node_in_group("campfire")
 
-func _physics_process(delta: float) -> void:
-	if ray_cast_2d.is_colliding() and can_fly==true:
-		velocity.y = fly
-	var direction = Vector2.ZERO
-	direction = global_position.direction_to(navigation_agent_2d.target_position)
-	velocity = velocity.lerp(direction*SPEED,delta)
-	if direction:
-		velocity = direction * SPEED
-	else:
-		velocity = velocity.lerp(Vector2.ZERO, 0.2)
 
-	move_and_slide()
 
-func _on_navigationtimer_timeout() -> void:
-	if navigation_agent_2d.distance_to_target() > 10.0:
-		var dir = signf(global_position.direction_to(campfire.global_position).x)
-		navigation_agent_2d.target_position = campfire.global_position+Vector2(20 * dir, 220.0)
+@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+
+
+@onready var attack_timer = $Timer
+@onready var campfire =get_tree().get_first_node_in_group("campfire")
+
+var randomnum
+
+enum {
+	SURROUND,
+	ATTACK,
+	HIT,
+}
+
+var state = SURROUND
+
+func _ready():
+	var rng = RandomNumberGenerator.new()
+	rng.randomize()
+	randomnum = rng.randf()
 	
 
-func _on_fly_time_timeout() -> void:
-	can_fly = true
+	
 
-func die():
-	Stats.style_add(20)
-	Stats.StyleBoost += 1
-	Stats.StyleDecay = Stats.MAX_STYLEDECAY
-	queue_free()
+func _physics_process(delta):
+	match state:
+		SURROUND:
+			move(get_circle_position(randomnum), delta)
+		ATTACK:
+			move(campfire.global_position, delta)
+		HIT:
+			move(campfire.global_position, delta)
+			knockback = knockback.move_toward(Vector2(10,10),10)
+			velocity += knockback
+			var collider = move_and_collide(velocity * delta)
+			if collider:
+				collider.get_collider().knockback = (collider.get_collider().global_position - global_position).normalized() * 50
+			print("HIT")
+			#Slash ANIM
+
+func move(target, delta):
+	var direction = (target - global_position).normalized() 
+	var desired_velocity =  direction * SPEED
+	var steering = (desired_velocity - velocity) * delta * 10
+	velocity += steering
+	move_and_slide()
+#	if direction.x<0:
+#		animated_sprite.flip_h = true
+	#elif direction.x>0:
+	#	animated_sprite.flip_h = false
+func get_circle_position(random):
+	var kill_circle_centre = campfire.global_position
+	var radius = 40
+	var angle = random * PI * 2;
+	var x = kill_circle_centre.x + cos(angle) * radius;
+	var y = kill_circle_centre.y + sin(angle) * radius;
+
+	return Vector2(x, y)
+
+
+
+
+
+
+func _on_timer_timeout() -> void:
+	state = ATTACK
