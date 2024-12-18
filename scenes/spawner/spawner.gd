@@ -18,10 +18,6 @@ var can_spawn_C = true
 @export var can_spawn_b = true
 @export var can_spawn_c = true
 
-
-
-
-
 func spawn_a(pos : Vector2):
 	#if can_spawn_A == true and stop_spawn == false:
 	if can_spawn_a == true:
