@@ -1,15 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://bnadksjvd1fyi"]
+[gd_scene load_steps=4 format=3 uid="uid://bnadksjvd1fyi"]
 
 [ext_resource type="Script" path="res://scenes/GAME.gd" id="1_d1yqb"]
 [ext_resource type="PackedScene" uid="uid://wc23oia3n6p4" path="res://scenes/gameplay_main.tscn" id="1_ti3jq"]
-[ext_resource type="Script" path="res://objects/mechanics/main.gd" id="3_figg3"]
 [ext_resource type="PackedScene" uid="uid://c0nt2ei1ryy4f" path="res://Ui/pause_menu.tscn" id="3_g8ggc"]
 
 [node name="Node" type="Node"]
 script = ExtResource("1_d1yqb")
 
 [node name="MAIN" parent="." instance=ExtResource("1_ti3jq")]
-script = ExtResource("3_figg3")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
