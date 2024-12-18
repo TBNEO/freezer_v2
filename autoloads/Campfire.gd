@@ -1,6 +1,7 @@
 extends Node
 
 var Health := 50
+const MAXHEALTH := 50
 
 signal DEFENSE_FAIL
 

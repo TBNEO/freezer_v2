@@ -1,0 +1,39 @@
+[gd_scene load_steps=7 format=3 uid="uid://cpnoy2eagm1qr"]
+
+[ext_resource type="Script" path="res://Ui/Healthstuff.gd" id="1_5rtyg"]
+[ext_resource type="Texture2D" uid="uid://bl47o2d53vqb1" path="res://assets/ui/campfire_healthbar.png" id="1_fu7gq"]
+[ext_resource type="Texture2D" uid="uid://vdonwui6vln7" path="res://assets/ui/campfire_icon.png" id="2_5ed0s"]
+[ext_resource type="Texture2D" uid="uid://bwy37s2kaoqmb" path="res://assets/ui/campfire_health.png" id="3_kftnn"]
+[ext_resource type="Texture2D" uid="uid://dvidwjn74xptj" path="res://assets/ui/healthbar.png" id="4_cu5fv"]
+[ext_resource type="Texture2D" uid="uid://cyel281pkxwvc" path="res://assets/ui/health.png" id="5_ng5g5"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5rtyg")
+
+[node name="HBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -128.0
+offset_bottom = 52.0
+grow_horizontal = 0
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="HBoxContainer"]
+layout_mode = 2
+value = 100.0
+texture_under = ExtResource("1_fu7gq")
+texture_over = ExtResource("2_5ed0s")
+texture_progress = ExtResource("3_kftnn")
+
+[node name="TextureProgressBar2" type="TextureProgressBar" parent="HBoxContainer"]
+layout_mode = 2
+value = 100.0
+texture_under = ExtResource("4_cu5fv")
+texture_progress = ExtResource("5_ng5g5")

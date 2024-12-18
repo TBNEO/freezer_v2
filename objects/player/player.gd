@@ -35,6 +35,8 @@ func _process(delta):
 	if last_dashtime > 0 and dashtime == 0:
 		velocity /= 2
 
+
+
 func _physics_process(delta):
 	velocity = movement_process(velocity)
 	move_and_slide()
@@ -71,8 +73,6 @@ func movement_process(v: Vector2) -> Vector2:
 			v.y /= 2
 		
 		if not is_on_floor():
-			if global_position.y < 0.0:
-				v += get_gravity() * get_physics_process_delta_time()
 			v += get_gravity() * get_physics_process_delta_time()
 		
 		if direction:
