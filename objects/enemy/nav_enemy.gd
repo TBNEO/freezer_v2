@@ -7,17 +7,17 @@ extends CharacterBody2D
 
 
 const  SPEED = 100
-const JUMP_VELOCITY = -690.0
+const JUMP_VELOCITY = -700.0
 
 
 @onready var right: RayCast2D = $right
 @onready var left: RayCast2D = $left
-@onready var head: RayCast2D = $head
 
-@onready var timer: Timer = $Timer
 @onready var navigation_agent_2d: NavigationAgent2D = $NavigationAgent2D
 
 @onready var player = get_tree().get_first_node_in_group("player")
+
+var Health := 5
 
 func _physics_process(delta: float) -> void:
 	
@@ -39,17 +39,20 @@ func _physics_process(delta: float) -> void:
 	if direction:
 		velocity.x = direction.x * SPEED
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
+		velocity.x = lerpf(velocity.x, 0.0, 0.2)
 
 	move_and_slide()
-
-
-
-
 
 func _on_navigationtimer_timeout() -> void:
 	navigation_agent_2d.target_position = player.global_position
 
-
 func _on_jump_timer_timeout() -> void:
 	jump_timer = true
+
+func take_damage():
+	Health -= 1
+	if Health <= 0:
+		die()
+
+func die():
+	queue_free()
