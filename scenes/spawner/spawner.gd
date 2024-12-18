@@ -1,44 +1,87 @@
 extends Node2D
 
+@onready var player = get_tree().get_first_node_in_group("player")
 
-@export var enemy_spawner_node = preload("res://scenes/enemy/nav_enemy.tscn")
 
-var spawn_enemies := []
+var distance = 300
 
-@export var spawn_points : Array [Marker2D]
-@onready var main = get_tree().get_first_node_in_group("main")
-@export var num = 10
-@onready var timer = $Timer
-var spawns := 0:
-	set(value):
-		if value == num:
-			timer.stop()
-		else:
-			spawns = value
-			timer.start()
+var enemy_node_A = preload("res://scenes/enemy/nav_enemy.tscn")
+var enemy_node_B = preload("res://scenes/enemy/nav_enemy.tscn")
+var enemy_node_C = preload("res://scenes/enemy/flying.tscn")
+var can_spawn_A =  true
+var can_spawn_B =  true
+var can_spawn_C = true
 
-var can_spawn : bool = true
-func _process(delta):
-			for i in get_children():
-				if i is Marker2D:
-					spawn_enemies.append(i)
+
+
+@export var can_spawn_a = true
+@export var can_spawn_b = true
+@export var can_spawn_c = true
 
 
 
 
-func _on_timer_timeout():
-	var spawn = spawn_enemies[randi()% spawn_enemies.size()]
-	var enemi = enemy_spawner_node.instantiate()
-	enemi.position = spawn.position
-	main.add_child(enemi)
-	#enemi.died.connect(on_enemy_died)
-	spawns += 1
-	var en_node = get_tree().get_nodes_in_group("spawn")
-	#var node = en_node[randi()% en_node.size()]
+
+func spawn_a(pos : Vector2):
+	#if can_spawn_A == true and stop_spawn == false:
+	if can_spawn_a == true:
+		var enemy = enemy_node_A.instantiate()
+		add_child(enemy)
+		can_spawn_A = false
+		enemy.position = pos
+
+
+func spawn_b(pos : Vector2):
+	#if can_spawn_B == true and stop_spawn_B == false:
+	if can_spawn_b == true:
+		var enemy_B = enemy_node_B.instantiate()
+		add_child(enemy_B)
+		can_spawn_B = false
+		enemy_B.position = pos
+func spawn_C(pos : Vector2):
+	#if can_spawn_B == true and stop_spawn_B == false:
+	if can_spawn_c == true:
+		var enemy_C = enemy_node_C.instantiate()
+		add_child(enemy_C)
+		can_spawn_C = false
+		enemy_C.position = pos
+
+
+
+
+
+func spawn_pos():
+	return player.position + distance * Vector2.RIGHT.rotated(randf_range(500,-500 ))
+	
+	
+func _on_timer_timeout() -> void:
+	can_spawn_A = true
+	spawn_a(spawn_pos())
+	#number_of_spawned +=1
+	
 	
 
 
+func _on_timerb_timeout() -> void:
+	can_spawn_B = true
+	#spawn_b(spawn_pos())
 
-func on_enemy_died(enemy):
-	spawns -= 1
-	spawn_enemies.erase(spawn_enemies)
+
+func _on_boss_timer_timeout() -> void:
+	can_spawn_C = true
+	spawn_C(spawn_pos())
+
+
+func _on_a_timeout() -> void:
+	can_spawn_A = true
+	spawn_a(spawn_pos())
+
+
+func _on_b_timeout() -> void:
+	can_spawn_B = true
+	spawn_b(spawn_pos())
+
+
+func _on_c_timeout() -> void:
+	can_spawn_C = true
+	spawn_C(spawn_pos())
