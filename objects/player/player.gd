@@ -27,7 +27,8 @@ func _process(delta):
 		if ray_cast_2d.enabled:
 			ray_cast_2d.target_position = global_position.direction_to(Stats.Crosshair.global_position)*500
 			if ray_cast_2d.is_colliding():
-				ray_cast_2d.get_collider().die()
+				if ray_cast_2d.has_method("die"):
+					ray_cast_2d.get_collider().die()
 			
 	var last_dashtime = dashtime
 	buffer_process()
