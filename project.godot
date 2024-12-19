@@ -29,13 +29,14 @@ window/stretch/mode="viewport"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/kanban_tasks/plugin.cfg")
+enabled=PackedStringArray()
 
 [global_group]
 
 player=""
 main=""
 campfire=""
+camera=""
 
 [input]
 

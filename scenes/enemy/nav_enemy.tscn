@@ -10,10 +10,10 @@ collision_layer = 4
 script = ExtResource("1_35iyq")
 
 [node name="ColorRect" type="ColorRect" parent="."]
-offset_left = -20.0
-offset_top = -21.0
-offset_right = 20.0
-offset_bottom = 19.0
+offset_left = -16.0
+offset_top = -17.0
+offset_right = 16.0
+offset_bottom = 15.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -1)
@@ -40,6 +40,6 @@ light_mask = 0
 visibility_layer = 32
 target_position = Vector2(-153, -159)
 
-[connection signal="timeout" from="navigationtimer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="navigationtimer" to="." method="_on_navigationtimer_timeout"]
+[connection signal="timeout" from="navigationtimer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="jump_timer" to="." method="_on_jump_timer_timeout"]

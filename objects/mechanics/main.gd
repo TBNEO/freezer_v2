@@ -24,3 +24,7 @@ func _process(delta):
 	
 	freeze_cd = max(0, freeze_cd - 1)
 	
+
+
+func _on_fps_checker_timeout() -> void:
+	print(Engine.get_frames_per_second())

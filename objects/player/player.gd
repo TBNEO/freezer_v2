@@ -18,16 +18,22 @@ const MAXJUMPBUFFER = 6
 
 var mousedir = Vector2.LEFT
 
+@export_category("Camera Shake Settings")
+@export var time:float = 1
+@export var power:float = 1
+
+
 @onready var ray_cast_2d = $RayCast2D
 @onready var score_display = $CanvasLayer/Control
-
+@onready var camera = get_tree().get_first_node_in_group("camera")
 func _process(delta):
 	if Stats.is_node_ready():
 		ray_cast_2d.enabled = Stats.Crosshair.firing
 		ray_cast_2d.target_position = global_position.direction_to(Stats.Crosshair.global_position)*500
 		if ray_cast_2d.is_colliding():
-			if ray_cast_2d.get_collider().has_method("die"):
+			if ray_cast_2d.get_collider():#.has_method("die"):
 				ray_cast_2d.get_collider().die()
+				camera.shake(time,power)
 		
 	var last_dashtime = dashtime
 	buffer_process()

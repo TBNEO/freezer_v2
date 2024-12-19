@@ -10,30 +10,15 @@ collision_layer = 4
 script = ExtResource("1_uyuew")
 
 [node name="ColorRect" type="ColorRect" parent="."]
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
 color = Color(1, 0, 1, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(20, 20)
 shape = SubResource("RectangleShape2D_yf0jm")
 
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-avoidance_enabled = true
-radius = 190.95
-neighbor_distance = 516.2
+[node name="Timer" type="Timer" parent="."]
 
-[node name="navigationtimer" type="Timer" parent="."]
-wait_time = 0.2
-autostart = true
-
-[node name="fly_time" type="Timer" parent="."]
-wait_time = 3.0
-autostart = true
-
-[node name="RayCast2D" type="RayCast2D" parent="."]
-position = Vector2(20, 0)
-target_position = Vector2(1.90735e-06, 167.5)
-
-[connection signal="timeout" from="navigationtimer" to="." method="_on_navigationtimer_timeout"]
-[connection signal="timeout" from="fly_time" to="." method="_on_fly_time_timeout"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
