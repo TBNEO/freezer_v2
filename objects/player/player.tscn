@@ -16,7 +16,7 @@ particle_flag_disable_z = true
 emission_shape_scale = Vector3(400, 200, 1)
 emission_shape = 3
 emission_box_extents = Vector3(1, 1, 1)
-gravity = Vector3(0, 25, 0)
+gravity = Vector3(0, 100, 0)
 linear_accel_min = -2.23517e-06
 linear_accel_max = 100.0
 radial_accel_min = 2.0
@@ -254,7 +254,6 @@ tracks/2/keys = {
 resource_name = "air"
 length = 0.0833416
 loop_mode = 1
-step = 0.0833333
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -283,7 +282,6 @@ tracks/1/keys = {
 [sub_resource type="Animation" id="Animation_0mvup"]
 resource_name = "dash"
 length = 1.00001
-step = 0.0833333
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -313,7 +311,6 @@ tracks/1/keys = {
 resource_name = "idle"
 length = 0.833342
 loop_mode = 1
-step = 0.0833333
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -354,7 +351,6 @@ tracks/2/keys = {
 [sub_resource type="Animation" id="Animation_irr4f"]
 resource_name = "jump"
 length = 0.500008
-step = 0.0833333
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -395,7 +391,6 @@ tracks/2/keys = {
 [sub_resource type="Animation" id="Animation_62a53"]
 resource_name = "land"
 length = 0.333342
-step = 0.0833333
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -425,7 +420,6 @@ tracks/1/keys = {
 resource_name = "walk"
 length = 0.666675
 loop_mode = 1
-step = 0.0833333
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -481,7 +475,7 @@ time = 0.3
 power = 2.0
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
-position = Vector2(0, -153)
+position = Vector2(0, -321)
 amount = 128
 process_material = SubResource("ParticleProcessMaterial_b7e6b")
 lifetime = 15.0
@@ -494,7 +488,7 @@ sprite_frames = SubResource("SpriteFrames_hln56")
 offset = Vector2(0, -4)
 
 [node name="Camera2D" type="Camera2D" parent="." groups=["camera"]]
-limit_top = 0
+limit_top = -240
 limit_bottom = 320
 position_smoothing_enabled = true
 position_smoothing_speed = 2.5

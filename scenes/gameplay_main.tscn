@@ -1,29 +1,26 @@
-[gd_scene load_steps=13 format=3 uid="uid://wc23oia3n6p4"]
+[gd_scene load_steps=12 format=3 uid="uid://wc23oia3n6p4"]
 
 [ext_resource type="Script" path="res://objects/mechanics/main.gd" id="1_ox4y7"]
 [ext_resource type="Script" path="res://objects/player/crosshair.gd" id="2_vb2iv"]
 [ext_resource type="Texture2D" uid="uid://cdlve2txnqaxk" path="res://assets/ui/crosshair.png" id="3_6wlxf"]
-[ext_resource type="Texture2D" uid="uid://chfqrbuhx2iol" path="res://icon.svg" id="3_dojtt"]
 [ext_resource type="PackedScene" uid="uid://b6etsfjlk68g7" path="res://objects/player/player.tscn" id="4_hjfkt"]
-[ext_resource type="PackedScene" uid="uid://cmen2axkfrqpl" path="res://objects/mechanics/campfire.tscn" id="4_jhufe"]
 [ext_resource type="PackedScene" uid="uid://g5k6dw0rh36w" path="res://scenes/spawner/spawner.tscn" id="4_uru2h"]
+[ext_resource type="PackedScene" uid="uid://dtnaqgr7vawkl" path="res://scenes/level.tscn" id="6_wndry"]
+[ext_resource type="Shader" uid="uid://xil7hew8di8q" path="res://objects/player/freeze_VFX.tres" id="7_obmfw"]
+[ext_resource type="Shader" uid="uid://dfhpewfwedvk7" path="res://objects/player/hurt_VFX.tres" id="8_thshu"]
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_yrmp6"]
-vertices = PackedVector2Array(408, 184, 631.031, 314.922, -153.031, 309.07, 232, 184, 90, 184, 232, 146, -90, 184, -153.961, 10.9688, -90, 146, 631.961, 9.02344, 408, 146, 90, 146)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(3, 2, 4, 5), PackedInt32Array(6, 4, 2), PackedInt32Array(6, 2, 7, 8), PackedInt32Array(9, 1, 0, 10), PackedInt32Array(7, 9, 10, 5), PackedInt32Array(5, 4, 11), PackedInt32Array(7, 5, 11), PackedInt32Array(7, 11, 8)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-164, 1, -163, 319, 641, 325, 642, -1)])
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_wshwg"]
+vertices = PackedVector2Array(1240, 40, 1240, -40, 1310, -70, 1310, 200, 1180, 200, 1180, 170, 980, 40, 1040, 170, 940, 140, 10, -220, -49.1406, -220, -49.0234, -302, 1550, -302, 1550, -220, 1490, -220, 1490, -70, 980, -40, 520, 40, 520, -40, 560, 140, 290, -40, 190, -70, 1040, 200, 940, 200, 560, 200, 460, 200, 460, 170, 290, 40, 320, 170, 320, 200, 190, 200, 10, -70)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(0, 3, 4, 5), PackedInt32Array(6, 0, 5, 7, 8), PackedInt32Array(9, 10, 11, 12), PackedInt32Array(12, 13, 14), PackedInt32Array(9, 12, 14), PackedInt32Array(9, 14, 15, 2), PackedInt32Array(9, 2, 1, 16), PackedInt32Array(17, 18, 16, 6, 8, 19), PackedInt32Array(9, 16, 18), PackedInt32Array(9, 18, 20, 21), PackedInt32Array(7, 22, 23, 8), PackedInt32Array(19, 24, 25, 26, 17), PackedInt32Array(27, 17, 26, 28), PackedInt32Array(28, 29, 30, 21, 27), PackedInt32Array(20, 27, 21), PackedInt32Array(9, 21, 31)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-59, -312, 1560, -312, 1560, 330, -60, 330)])
 
-[sub_resource type="GDScript" id="GDScript_k0igs"]
-script/source = "extends StaticBody2D
-"
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6d405"]
+shader = ExtResource("7_obmfw")
+shader_parameter/Grayscale = null
 
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_wucn5"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_02523"]
-size = Vector2(160, 18)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_mo130"]
-size = Vector2(156, 18)
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_d8e12"]
+shader = ExtResource("8_thshu")
+shader_parameter/Hurt = null
 
 [node name="MAIN" type="Node2D" groups=["main"]]
 script = ExtResource("1_ox4y7")
@@ -37,47 +34,42 @@ texture = ExtResource("3_6wlxf")
 
 [node name="Pausable" type="Node" parent="."]
 
+[node name="spawner" parent="Pausable" node_paths=PackedStringArray("SpawnPoints") instance=ExtResource("4_uru2h")]
+SpawnPoints = [NodePath("Spawnpoint1"), NodePath("Spawnpoint4"), NodePath("Spawnpoint2"), NodePath("Spawnpoint3")]
+
+[node name="Spawnpoint1" type="Marker2D" parent="Pausable/spawner"]
+position = Vector2(62, -92)
+
+[node name="Spawnpoint4" type="Marker2D" parent="Pausable/spawner"]
+position = Vector2(1427, -92)
+
+[node name="Spawnpoint2" type="Marker2D" parent="Pausable/spawner"]
+position = Vector2(397, -230)
+
+[node name="Spawnpoint3" type="Marker2D" parent="Pausable/spawner"]
+position = Vector2(1113, -228)
+
+[node name="PLAYER" parent="Pausable" instance=ExtResource("4_hjfkt")]
+position = Vector2(726, 45)
+
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="Pausable"]
-navigation_polygon = SubResource("NavigationPolygon_yrmp6")
+navigation_polygon = SubResource("NavigationPolygon_wshwg")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Pausable/NavigationRegion2D"]
-script = SubResource("GDScript_k0igs")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Pausable/NavigationRegion2D/StaticBody2D"]
-position = Vector2(0, 320)
-shape = SubResource("WorldBoundaryShape2D_wucn5")
-
-[node name="platformA" type="CollisionShape2D" parent="Pausable/NavigationRegion2D/StaticBody2D"]
-position = Vector2(0, 165)
-shape = SubResource("RectangleShape2D_02523")
-one_way_collision = true
-
-[node name="Sprite2D" type="Sprite2D" parent="Pausable/NavigationRegion2D/StaticBody2D/platformA"]
-position = Vector2(-3.8147e-06, -0.5)
-scale = Vector2(1.25, 0.132812)
-texture = ExtResource("3_dojtt")
-
-[node name="platformB" type="CollisionShape2D" parent="Pausable/NavigationRegion2D/StaticBody2D"]
-position = Vector2(320, 165)
-shape = SubResource("RectangleShape2D_mo130")
-one_way_collision = true
-
-[node name="Sprite2D2" type="Sprite2D" parent="Pausable/NavigationRegion2D/StaticBody2D/platformB"]
-position = Vector2(-0.500163, 0.249999)
-scale = Vector2(1.21094, 0.152344)
-texture = ExtResource("3_dojtt")
-
-[node name="PLAYER" parent="Pausable/NavigationRegion2D" instance=ExtResource("4_hjfkt")]
-position = Vector2(157, 172)
-
-[node name="CampfirePlaceholder" parent="Pausable" instance=ExtResource("4_jhufe")]
-position = Vector2(320, 134)
-
-[node name="spawner" parent="Pausable" instance=ExtResource("4_uru2h")]
+[node name="Level" parent="Pausable/NavigationRegion2D" instance=ExtResource("6_wndry")]
 
 [node name="FPS_checker" type="Timer" parent="."]
 autostart = true
 
-[node name="Marker2D" type="Marker2D" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Freeze" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_6d405")
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Hurt" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_d8e12")
+offset_right = 40.0
+offset_bottom = 40.0
 
 [connection signal="timeout" from="FPS_checker" to="." method="_on_fps_checker_timeout"]

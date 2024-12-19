@@ -1,0 +1,84 @@
+[gd_resource type="VisualShader" load_steps=6 format=3 uid="uid://xil7hew8di8q"]
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_1rety"]
+source = 1
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_c3x72"]
+input_name = "screen_uv"
+
+[sub_resource type="VisualShaderNodeSwitch" id="VisualShaderNodeSwitch_muwfp"]
+default_input_values = [0, true, 1, true, 2, false]
+op_type = 6
+
+[sub_resource type="VisualShaderNodeBooleanParameter" id="VisualShaderNodeBooleanParameter_rcain"]
+parameter_name = "Grayscale"
+default_value = true
+
+[sub_resource type="VisualShaderNodeColorFunc" id="VisualShaderNodeColorFunc_aal7d"]
+
+[resource]
+code = "shader_type canvas_item;
+render_mode blend_mix;
+
+uniform sampler2D screen_tex_frg_13 : hint_screen_texture;
+uniform bool Grayscale;
+
+
+
+void fragment() {
+// Input:14
+	vec2 n_out14p0 = SCREEN_UV;
+
+
+	vec4 n_out13p0;
+// Texture2D:13
+	n_out13p0 = texture(screen_tex_frg_13, n_out14p0);
+
+
+	vec3 n_out9p0;
+// ColorFunc:9
+	{
+		vec3 c = vec3(n_out13p0.xyz);
+		float max1 = max(c.r, c.g);
+		float max2 = max(max1, c.b);
+		n_out9p0 = vec3(max2, max2, max2);
+	}
+
+
+// BooleanParameter:16
+	bool n_out16p0 = Grayscale;
+
+
+	bool n_out15p0;
+// Switch:15
+	bool n_in15p1 = true;
+	bool n_in15p2 = false;
+	if (n_out16p0) {
+		n_out15p0 = n_in15p1;
+	} else {
+		n_out15p0 = n_in15p2;
+	}
+
+
+// Output:0
+	COLOR.rgb = n_out9p0;
+	COLOR.a = (n_out15p0 ? 1.0 : 0.0);
+
+
+}
+"
+graph_offset = Vector2(-259.49, -184.281)
+mode = 1
+flags/light_only = false
+nodes/fragment/0/position = Vector2(480, -240)
+nodes/fragment/9/node = SubResource("VisualShaderNodeColorFunc_aal7d")
+nodes/fragment/9/position = Vector2(220, -280)
+nodes/fragment/13/node = SubResource("VisualShaderNodeTexture_1rety")
+nodes/fragment/13/position = Vector2(-40, -300)
+nodes/fragment/14/node = SubResource("VisualShaderNodeInput_c3x72")
+nodes/fragment/14/position = Vector2(-420, -280)
+nodes/fragment/15/node = SubResource("VisualShaderNodeSwitch_muwfp")
+nodes/fragment/15/position = Vector2(220, -140)
+nodes/fragment/16/node = SubResource("VisualShaderNodeBooleanParameter_rcain")
+nodes/fragment/16/position = Vector2(-60, -100)
+nodes/fragment/connections = PackedInt32Array(13, 0, 9, 0, 14, 0, 13, 0, 9, 0, 0, 0, 15, 0, 0, 1, 16, 0, 15, 0)

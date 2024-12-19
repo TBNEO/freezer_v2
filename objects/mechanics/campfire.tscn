@@ -1,15 +1,51 @@
-[gd_scene load_steps=3 format=3 uid="uid://cmen2axkfrqpl"]
+[gd_scene load_steps=8 format=3 uid="uid://cmen2axkfrqpl"]
 
-[ext_resource type="Texture2D" uid="uid://chfqrbuhx2iol" path="res://icon.svg" id="1_ojvie"]
+[ext_resource type="Texture2D" uid="uid://bgrqcoijmxtn6" path="res://assets/objects/fire sprite-Sheet.png" id="1_mspee"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5j81c"]
+atlas = ExtResource("1_mspee")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v5msh"]
+atlas = ExtResource("1_mspee")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ect3"]
+atlas = ExtResource("1_mspee")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2o55k"]
+atlas = ExtResource("1_mspee")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_233r0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5j81c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v5msh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ect3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2o55k")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jpekp"]
 
-[node name="CampfirePlaceholder" type="Node2D" groups=["campfire"]]
+[node name="Campfire" type="Node2D" groups=["campfire"]]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-self_modulate = Color(1, 0, 0.129412, 1)
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("1_ojvie")
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_233r0")
+autoplay = "default"
+frame_progress = 0.446331
 
 [node name="Area2D" type="Area2D" parent="."]
 

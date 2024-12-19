@@ -7,6 +7,6 @@ signal DEFENSE_FAIL
 
 func damage_campfire():
 	Health -= 1
-	print("DAMAGED")
+	Stats.StyleBoost = 1
 	if Health <= 0:
 		DEFENSE_FAIL.emit()

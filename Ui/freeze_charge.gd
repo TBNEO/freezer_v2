@@ -10,3 +10,7 @@ func _process(delta):
 	else:
 		texture_progress_bar.max_value = Stats.MAX_FREEZE_CD
 		texture_progress_bar.value = Stats.MAX_FREEZE_CD - Stats.freeze_cd
+	if texture_progress_bar.value == texture_progress_bar.max_value:
+		sprite_2d.show()
+	else:
+		sprite_2d.hide()

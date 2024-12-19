@@ -18,9 +18,7 @@ var can_spawn_C = true
 @export var can_spawn_b = true
 @export var can_spawn_c = true
 
-
-
-
+@export var SpawnPoints: Array[Marker2D]
 
 func spawn_a(pos : Vector2):
 	#if can_spawn_A == true and stop_spawn == false:
@@ -38,28 +36,14 @@ func spawn_b(pos : Vector2):
 		add_child(enemy_B)
 		can_spawn_B = false
 		enemy_B.position = pos
+
 func spawn_C(pos : Vector2):
 	#if can_spawn_B == true and stop_spawn_B == false:
 	if can_spawn_c == true:
 		var enemy_C = enemy_node_C.instantiate()
 		add_child(enemy_C)
 		can_spawn_C = false
-		var chance = randi()%7
-		match chance :
-			0: 
-				enemy_C.position = Vector2(300,0)
-			1:
-				enemy_C.position = Vector2(200,0)
-			2:
-				enemy_C.position = Vector2(100,0)
-			3:
-				enemy_C.position = Vector2(-100,0)
-			4:
-				enemy_C.position = Vector2(400,0)
-			5:
-				enemy_C.position = Vector2(500,0)
-			6:
-				enemy_C.position = Vector2(0,0)
+		enemy_C.position = pos
 
 
 
@@ -67,9 +51,8 @@ func spawn_C(pos : Vector2):
 
 
 func spawn_pos():
-	return player.position + distance * Vector2.RIGHT.rotated(randf_range(500,-500 ))
-	
-	
+	return SpawnPoints.pick_random().global_position
+
 func _on_timer_timeout() -> void:
 	can_spawn_A = true
 	spawn_a(spawn_pos())
