@@ -10,8 +10,6 @@ var pos_y : int
 
 @onready var timer: Timer = $Timer
 
-
-@onready var tween : Tween = create_tween()
 @onready var camera: Camera2D = $"."
 
 func _ready():
@@ -30,4 +28,4 @@ func shake(time: float, amount: float):
 	timer.start()
 func _on_timer_timeout() -> void:
 	set_process(false)
-	tween.interpolate_value(self, "offset", 1, 1, Tween.TRANS_LINEAR, Tween.EASE_IN)
+	Tween.interpolate_value(self, "offset", 1, 1, Tween.TRANS_LINEAR, Tween.EASE_IN)

@@ -1,6 +1,5 @@
 extends Area2D
 
-signal died
 
 ##Invincibility Frames
 var MAXIVTime := 30
@@ -23,4 +22,5 @@ func _process(delta):
 func take_damage(body: PhysicsBody2D) -> void:
 	Stats.take_damage()
 	owner.velocity = owner.global_position.direction_to(body.global_position)*KBMultiplier
-	collision_shape_2d.disabled = true
+	IVTime = MAXIVTime
+	collision_shape_2d.call_deferred("set_disabled", true)

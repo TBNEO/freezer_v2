@@ -9,21 +9,40 @@
 [ext_resource type="Shader" uid="uid://xil7hew8di8q" path="res://objects/player/freeze_VFX.tres" id="7_obmfw"]
 [ext_resource type="Shader" uid="uid://dfhpewfwedvk7" path="res://objects/player/hurt_VFX.tres" id="8_thshu"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6d405"]
+shader = ExtResource("7_obmfw")
+shader_parameter/Grayscale = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_d8e12"]
+shader = ExtResource("8_thshu")
+shader_parameter/Hurt = 0.0
+
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_wshwg"]
 vertices = PackedVector2Array(1240, 40, 1240, -40, 1310, -70, 1310, 200, 1180, 200, 1180, 170, 980, 40, 1040, 170, 940, 140, 10, -220, -49.1406, -220, -49.0234, -302, 1550, -302, 1550, -220, 1490, -220, 1490, -70, 980, -40, 520, 40, 520, -40, 560, 140, 290, -40, 190, -70, 1040, 200, 940, 200, 560, 200, 460, 200, 460, 170, 290, 40, 320, 170, 320, 200, 190, 200, 10, -70)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(0, 3, 4, 5), PackedInt32Array(6, 0, 5, 7, 8), PackedInt32Array(9, 10, 11, 12), PackedInt32Array(12, 13, 14), PackedInt32Array(9, 12, 14), PackedInt32Array(9, 14, 15, 2), PackedInt32Array(9, 2, 1, 16), PackedInt32Array(17, 18, 16, 6, 8, 19), PackedInt32Array(9, 16, 18), PackedInt32Array(9, 18, 20, 21), PackedInt32Array(7, 22, 23, 8), PackedInt32Array(19, 24, 25, 26, 17), PackedInt32Array(27, 17, 26, 28), PackedInt32Array(28, 29, 30, 21, 27), PackedInt32Array(20, 27, 21), PackedInt32Array(9, 21, 31)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-59, -312, 1560, -312, 1560, 330, -60, 330)])
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_6d405"]
-shader = ExtResource("7_obmfw")
-shader_parameter/Grayscale = null
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_d8e12"]
-shader = ExtResource("8_thshu")
-shader_parameter/Hurt = null
-
 [node name="MAIN" type="Node2D" groups=["main"]]
 script = ExtResource("1_ox4y7")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="Freeze" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_6d405")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Hurt" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_d8e12")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Crosshair" type="Node2D" parent="."]
 script = ExtResource("2_vb2iv")
@@ -59,17 +78,5 @@ navigation_polygon = SubResource("NavigationPolygon_wshwg")
 
 [node name="FPS_checker" type="Timer" parent="."]
 autostart = true
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="Freeze" type="ColorRect" parent="CanvasLayer"]
-material = SubResource("ShaderMaterial_6d405")
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="Hurt" type="ColorRect" parent="CanvasLayer"]
-material = SubResource("ShaderMaterial_d8e12")
-offset_right = 40.0
-offset_bottom = 40.0
 
 [connection signal="timeout" from="FPS_checker" to="." method="_on_fps_checker_timeout"]

@@ -40,7 +40,7 @@ func _physics_process(delta: float) -> void:
 	var direction = Vector2.ZERO
 	direction  = global_position.direction_to(navigation_agent_2d.get_next_path_position())
 	velocity = velocity.lerp(direction*SPEED,delta)
-	animated_sprite_2d.play("run")
+	#animated_sprite_2d.play("run")
 	if direction:
 		velocity.x = direction.x * SPEED
 	else:

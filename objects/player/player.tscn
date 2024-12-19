@@ -475,7 +475,8 @@ time = 0.3
 power = 2.0
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
-position = Vector2(0, -321)
+process_mode = 3
+position = Vector2(0, -220)
 amount = 128
 process_material = SubResource("ParticleProcessMaterial_b7e6b")
 lifetime = 15.0
@@ -488,6 +489,7 @@ sprite_frames = SubResource("SpriteFrames_hln56")
 offset = Vector2(0, -4)
 
 [node name="Camera2D" type="Camera2D" parent="." groups=["camera"]]
+position = Vector2(0, -65)
 limit_top = -240
 limit_bottom = 320
 position_smoothing_enabled = true
