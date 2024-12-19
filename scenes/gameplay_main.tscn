@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://wc23oia3n6p4"]
+[gd_scene load_steps=13 format=3 uid="uid://wc23oia3n6p4"]
 
 [ext_resource type="Script" path="res://objects/mechanics/main.gd" id="1_ox4y7"]
 [ext_resource type="Script" path="res://objects/player/crosshair.gd" id="2_vb2iv"]
+[ext_resource type="Texture2D" uid="uid://cdlve2txnqaxk" path="res://assets/ui/crosshair.png" id="3_6wlxf"]
 [ext_resource type="Texture2D" uid="uid://chfqrbuhx2iol" path="res://icon.svg" id="3_dojtt"]
 [ext_resource type="PackedScene" uid="uid://b6etsfjlk68g7" path="res://objects/player/player.tscn" id="4_hjfkt"]
 [ext_resource type="PackedScene" uid="uid://cmen2axkfrqpl" path="res://objects/mechanics/campfire.tscn" id="4_jhufe"]
@@ -32,8 +33,7 @@ script = ExtResource("2_vb2iv")
 
 [node name="Sprite2D" type="Sprite2D" parent="Crosshair"]
 modulate = Color(1, 0.415686, 0.443137, 1)
-scale = Vector2(0.05, 0.05)
-texture = ExtResource("3_dojtt")
+texture = ExtResource("3_6wlxf")
 
 [node name="Pausable" type="Node" parent="."]
 

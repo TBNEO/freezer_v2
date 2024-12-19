@@ -27,6 +27,7 @@ var mousedir = Vector2.LEFT
 @onready var score_display = $CanvasLayer/Control
 @onready var camera = get_tree().get_first_node_in_group("camera")
 func _process(delta):
+	anim_management()
 	if Stats.is_node_ready():
 		ray_cast_2d.enabled = Stats.Crosshair.firing
 		ray_cast_2d.target_position = global_position.direction_to(Stats.Crosshair.global_position)*500
@@ -85,3 +86,11 @@ func movement_process(v: Vector2) -> Vector2:
 	
 	return v
 	
+
+@onready var animation_tree = $Anims/AnimationTree
+
+func anim_management() -> void:
+	animation_tree.set("parameters/conditions/walking", velocity.x != 0.0 and is_on_floor())
+	animation_tree.set("parameters/conditions/idle", velocity.x == 0.0 and is_on_floor())
+	animation_tree.set("parameters/conditions/dashing", dashtime > 0)
+	animation_tree.set("parameters/conditions/jumping", velocity.y < 0)

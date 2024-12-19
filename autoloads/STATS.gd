@@ -13,6 +13,12 @@ var Crosshair
 
 var Freeze := false
 
+const MAX_FREEZE = 180
+const MAX_FREEZE_CD = 360
+
+var freeze_time = 0
+var freeze_cd = 0
+
 func _init():
 	process_priority = -1
 
