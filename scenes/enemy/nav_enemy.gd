@@ -14,6 +14,8 @@ const JUMP_VELOCITY = -700.0
 @onready var left: RayCast2D = $left
 
 @onready var navigation_agent_2d: NavigationAgent2D = $NavigationAgent2D
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 
 @onready var campfire = get_tree().get_first_node_in_group("campfire")
 @onready var campfire_attack = $campfire_attack
@@ -29,6 +31,8 @@ func _physics_process(delta: float) -> void:
 		velocity.y = JUMP_VELOCITY
 		jump_timer=false
 	if left.is_colliding() and jump_timer == true :
+		animated_sprite_2d.pause()
+		animation_player.play("jump")
 		velocity.y = JUMP_VELOCITY
 		jump_timer=false
 
@@ -36,11 +40,15 @@ func _physics_process(delta: float) -> void:
 	var direction = Vector2.ZERO
 	direction  = global_position.direction_to(navigation_agent_2d.get_next_path_position())
 	velocity = velocity.lerp(direction*SPEED,delta)
+	animated_sprite_2d.play("run")
 	if direction:
 		velocity.x = direction.x * SPEED
 	else:
 		velocity.x = lerpf(velocity.x, 0.0, 0.2)
-
+	if direction.x >0:
+		animated_sprite_2d.flip_h= true
+	elif direction.x <0:
+		animated_sprite_2d.flip_h=false
 	move_and_slide()
 	
 	

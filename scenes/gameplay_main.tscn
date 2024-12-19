@@ -78,4 +78,6 @@ position = Vector2(320, 134)
 [node name="FPS_checker" type="Timer" parent="."]
 autostart = true
 
+[node name="Marker2D" type="Marker2D" parent="."]
+
 [connection signal="timeout" from="FPS_checker" to="." method="_on_fps_checker_timeout"]
