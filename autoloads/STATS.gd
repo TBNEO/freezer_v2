@@ -1,5 +1,7 @@
 extends Node
 
+signal FAIL_DEATH
+
 var Health := 10.0
 const MAXHEALTH := 10.0
 var Healthlock := 0.0
@@ -25,6 +27,11 @@ func _init():
 func style_add(amount: int):
 	Style += amount * StyleBoost
 
+func take_damage():
+	Health -= 1
+	if Health <= 0:
+		FAIL_DEATH.emit()
+
 func _process(delta):
 	if Freeze: return
 	if StyleBoost > 1:
@@ -32,5 +39,3 @@ func _process(delta):
 			StyleDecay -= 1
 		else:
 			StyleBoost -= 1
-	
-	
