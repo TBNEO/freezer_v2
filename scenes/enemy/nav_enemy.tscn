@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://c4pixchkiv7gy"]
+[gd_scene load_steps=4 format=3 uid="uid://c4pixchkiv7gy"]
 
 [ext_resource type="Script" path="res://scenes/enemy/nav_enemy.gd" id="1_35iyq"]
+[ext_resource type="PackedScene" uid="uid://dd4jkpoqertne" path="res://scenes/enemy/timestop_killzone.tscn" id="2_21rfi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_augee"]
 size = Vector2(32, 32)
@@ -40,6 +41,8 @@ light_mask = 0
 visibility_layer = 32
 target_position = Vector2(-153, -159)
 
-[connection signal="timeout" from="navigationtimer" to="." method="_on_navigationtimer_timeout"]
+[node name="TimestopKillzone" parent="." instance=ExtResource("2_21rfi")]
+
 [connection signal="timeout" from="navigationtimer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="navigationtimer" to="." method="_on_navigationtimer_timeout"]
 [connection signal="timeout" from="jump_timer" to="." method="_on_jump_timer_timeout"]

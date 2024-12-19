@@ -25,6 +25,7 @@ func _process(delta):
 
 
 func bullet_trail() -> void:
+	if Stats.Freeze: return
 	var player = get_tree().get_first_node_in_group("player").global_position
 	var t = get_tree().create_tween()
 	var trail = Line2D.new()

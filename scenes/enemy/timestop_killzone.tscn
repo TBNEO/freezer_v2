@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://dd4jkpoqertne"]
+
+[ext_resource type="Script" path="res://scenes/enemy/timestop_killzone.gd" id="1_arytx"]
+[ext_resource type="Texture2D" uid="uid://dq383w4v8e508" path="res://assets/objects/mark_for_death.png" id="2_4a3uq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_augee"]
+size = Vector2(32, 32)
+
+[node name="TimestopKillzone" type="Area2D"]
+process_mode = 3
+script = ExtResource("1_arytx")
+
+[node name="area" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_augee")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+z_index = 1
+texture = ExtResource("2_4a3uq")
