@@ -43,6 +43,10 @@ target_position = Vector2(-153, -159)
 
 [node name="TimestopKillzone" parent="." instance=ExtResource("2_21rfi")]
 
+[node name="campfire_attack" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="timeout" from="navigationtimer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="navigationtimer" to="." method="_on_navigationtimer_timeout"]
 [connection signal="timeout" from="jump_timer" to="." method="_on_jump_timer_timeout"]
+[connection signal="timeout" from="campfire_attack" to="." method="_on_campfire_attack_timeout"]

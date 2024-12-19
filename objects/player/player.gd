@@ -26,8 +26,9 @@ var mousedir = Vector2.LEFT
 @onready var ray_cast_2d = $RayCast2D
 @onready var score_display = $CanvasLayer/Control
 @onready var camera = get_tree().get_first_node_in_group("camera")
+@onready var anims = $Anims/AnimationPlayer
+
 func _process(delta):
-	anim_management()
 	if Stats.is_node_ready():
 		ray_cast_2d.enabled = Stats.Crosshair.firing
 		ray_cast_2d.target_position = global_position.direction_to(Stats.Crosshair.global_position)*500
@@ -43,7 +44,12 @@ func _process(delta):
 
 func _physics_process(delta):
 	velocity = movement_process(velocity)
+	var was_aired = !is_on_floor()
 	move_and_slide()
+	if (was_aired and is_on_floor()):
+		anims.play("land")
+		return
+	anim_manager()
 
 func buffer_process() -> void:
 	if Input.is_action_just_pressed("dash") and dash_cd == 0:
@@ -83,14 +89,30 @@ func movement_process(v: Vector2) -> Vector2:
 			v.x = lerpf(v.x, speed, ac)
 		else:
 			v.x = lerpf(v.x, 0.0, ac/2)
-	
+		
 	return v
 	
 
-@onready var animation_tree = $Anims/AnimationTree
-
-func anim_management() -> void:
-	animation_tree.set("parameters/conditions/walking", velocity.x != 0.0 and is_on_floor())
-	animation_tree.set("parameters/conditions/idle", velocity.x == 0.0 and is_on_floor())
-	animation_tree.set("parameters/conditions/dashing", dashtime > 0)
-	animation_tree.set("parameters/conditions/jumping", velocity.y < 0)
+func anim_manager():
+	$Sprite2D.flip_h = sign(global_position.direction_to(get_global_mouse_position()).x) < 0
+	var current = anims.current_animation
+	if current == "land": return
+	if current == "dash": await anims.animation_finished
+	if is_on_floor():
+		if dashtime == 0:
+			var input = Input.get_axis("left", "right")
+			if input == 0.0:
+				anims.play("idle")
+				return
+			else:
+				anims.play("walk")
+				return
+	else:
+		if velocity.y < 0 and not dashtime:
+			anims.play("jump")
+			return
+		anims.play("air")
+		return
+	if dashtime != 0:
+		anims.play("dash")
+		return

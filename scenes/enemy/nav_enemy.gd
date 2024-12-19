@@ -16,8 +16,13 @@ const JUMP_VELOCITY = -700.0
 @onready var navigation_agent_2d: NavigationAgent2D = $NavigationAgent2D
 
 @onready var campfire = get_tree().get_first_node_in_group("campfire")
+@onready var campfire_attack = $campfire_attack
 
 func _physics_process(delta: float) -> void:
+	if navigation_agent_2d.distance_to_target() < 10.0 and campfire_attack.is_stopped():
+		campfire_attack.start()
+	else:
+		campfire_attack.stop()
 	
 	if not is_on_floor():
 		velocity += get_gravity() * delta
@@ -31,8 +36,7 @@ func _physics_process(delta: float) -> void:
 
 
 	var direction = Vector2.ZERO
-	direction  =navigation_agent_2d.get_next_path_position() -global_position
-	direction  = direction.normalized()
+	direction  = global_position.direction_to(navigation_agent_2d.get_next_path_position())
 	velocity = velocity.lerp(direction*SPEED,delta)
 	if direction:
 		velocity.x = direction.x * SPEED
@@ -40,6 +44,8 @@ func _physics_process(delta: float) -> void:
 		velocity.x = lerpf(velocity.x, 0.0, 0.2)
 
 	move_and_slide()
+	
+	
 
 func _on_navigationtimer_timeout() -> void:
 	navigation_agent_2d.target_position = campfire.global_position
@@ -52,3 +58,6 @@ func die():
 	Stats.StyleBoost += 1
 	Stats.StyleDecay = Stats.MAX_STYLEDECAY
 	queue_free()
+
+func _on_campfire_attack_timeout():
+	Campfire.damage_campfire()
