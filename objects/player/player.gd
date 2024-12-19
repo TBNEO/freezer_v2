@@ -24,18 +24,15 @@ var mousedir = Vector2.LEFT
 func _process(delta):
 	if Stats.is_node_ready():
 		ray_cast_2d.enabled = Stats.Crosshair.firing
-		if ray_cast_2d.enabled:
-			ray_cast_2d.target_position = global_position.direction_to(Stats.Crosshair.global_position)*500
-			if ray_cast_2d.is_colliding():
-				if ray_cast_2d.has_method("die"):
-					ray_cast_2d.get_collider().die()
-			
+		ray_cast_2d.target_position = global_position.direction_to(Stats.Crosshair.global_position)*500
+		if ray_cast_2d.is_colliding():
+			if ray_cast_2d.get_collider().has_method("die"):
+				ray_cast_2d.get_collider().die()
+		
 	var last_dashtime = dashtime
 	buffer_process()
 	if last_dashtime > 0 and dashtime == 0:
 		velocity /= 2
-
-
 
 func _physics_process(delta):
 	velocity = movement_process(velocity)
