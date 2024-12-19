@@ -21,8 +21,6 @@ const JUMP_VELOCITY = -700.0
 func _physics_process(delta: float) -> void:
 	if navigation_agent_2d.distance_to_target() < 10.0 and campfire_attack.is_stopped():
 		campfire_attack.start()
-	else:
-		campfire_attack.stop()
 	
 	if not is_on_floor():
 		velocity += get_gravity() * delta
