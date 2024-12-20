@@ -27,6 +27,10 @@ window/size/viewport_height=320
 window/size/mode=2
 window/stretch/mode="viewport"
 
+[editor]
+
+movie_writer/movie_file="C:/Users/heito/Downloads/actually dying.avi"
+
 [editor_plugins]
 
 enabled=PackedStringArray()

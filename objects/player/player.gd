@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-const SPEED = 400.0
+const SPEED = 300.0
 const DASHSPEED = 1000.0
 const JUMP_VELOCITY = -500.0
 const ACCELERATION = 0.75
@@ -27,11 +27,13 @@ var mousedir = Vector2.LEFT
 @onready var score_display = $CanvasLayer/Control
 @onready var camera = get_tree().get_first_node_in_group("camera")
 @onready var anims = $Anims/AnimationPlayer
+@onready var gun = $RayCast2D/gun
 
 func _process(delta):
 	if Stats.is_node_ready():
 		ray_cast_2d.enabled = Stats.Crosshair.firing
 		ray_cast_2d.target_position = global_position.direction_to(Stats.Crosshair.global_position)*500
+		
 		if ray_cast_2d.is_colliding():
 			if ray_cast_2d.get_collider():#.has_method("die"):
 				ray_cast_2d.get_collider().die()
@@ -95,6 +97,8 @@ func movement_process(v: Vector2) -> Vector2:
 
 func anim_manager():
 	$Sprite2D.flip_h = sign(global_position.direction_to(get_global_mouse_position()).x) < 0
+	gun.look_at(get_global_mouse_position())
+	gun.flip_v = sign(global_position.direction_to(get_global_mouse_position()).x) < 0
 	var current = anims.current_animation
 	if current == "land": return
 	if current == "dash": await anims.animation_finished

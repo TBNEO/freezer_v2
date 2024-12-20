@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://b6etsfjlk68g7"]
+[gd_scene load_steps=46 format=3 uid="uid://b6etsfjlk68g7"]
 
 [ext_resource type="Script" path="res://objects/player/player.gd" id="1_6tiru"]
 [ext_resource type="Texture2D" uid="uid://bqi42bbr38ha5" path="res://assets/objects/Sprite sheet idle.png" id="2_fsugl"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://83s0iqcoy2c2" path="res://objects/dmgboxes/hurtbox_player.tscn" id="5_w6aqa"]
 [ext_resource type="Script" path="res://objects/player/camera_2d.gd" id="6_r3uu4"]
 [ext_resource type="PackedScene" uid="uid://dnmd1861y46qj" path="res://Ui/freeze_charge.tscn" id="6_vuvp8"]
+[ext_resource type="Texture2D" uid="uid://75im4nuo145p" path="res://assets/objects/gun 32x32.png" id="7_g8ha1"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_b7e6b"]
 particle_flag_disable_z = true
@@ -502,6 +503,11 @@ autostart = true
 [node name="RayCast2D" type="RayCast2D" parent="."]
 target_position = Vector2(0, 0)
 collision_mask = 4
+
+[node name="gun" type="Sprite2D" parent="RayCast2D"]
+position = Vector2(0, -4)
+texture = ExtResource("7_g8ha1")
+offset = Vector2(12, 0)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 process_mode = 3
