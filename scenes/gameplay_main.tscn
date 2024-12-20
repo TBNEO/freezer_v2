@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dtnaqgr7vawkl" path="res://scenes/level.tscn" id="6_wndry"]
 [ext_resource type="Shader" uid="uid://xil7hew8di8q" path="res://objects/player/freeze_VFX.tres" id="7_obmfw"]
 [ext_resource type="Shader" uid="uid://dfhpewfwedvk7" path="res://objects/player/hurt_VFX.tres" id="8_thshu"]
-[ext_resource type="PackedScene" uid="uid://5otn4vqfj7e5" path="res://scenes/enemy/exploding_enemy.tscn" id="10_ko6qs"]
+[ext_resource type="PackedScene" path="res://scenes/enemy/exploding_enemy.tscn" id="10_ko6qs"]
 [ext_resource type="AudioStream" uid="uid://cai1y6fnmkp4m" path="res://assets/sounds/playerdead1.wav" id="12_thi7j"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6d405"]
@@ -61,7 +61,6 @@ volume_db = 1.0
 [node name="Pausable" type="Node" parent="."]
 
 [node name="spawner" parent="Pausable" node_paths=PackedStringArray("SpawnPoints") instance=ExtResource("4_uru2h")]
-process_mode = 4
 SpawnPoints = [NodePath("Spawnpoint1"), NodePath("Spawnpoint4"), NodePath("Spawnpoint2"), NodePath("Spawnpoint3")]
 
 [node name="Spawnpoint1" type="Marker2D" parent="Pausable/spawner"]
@@ -78,6 +77,7 @@ position = Vector2(1113, -228)
 
 [node name="PLAYER" parent="Pausable" instance=ExtResource("4_hjfkt")]
 position = Vector2(726, 45)
+collision_layer = 2
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="Pausable"]
 navigation_polygon = SubResource("NavigationPolygon_wshwg")

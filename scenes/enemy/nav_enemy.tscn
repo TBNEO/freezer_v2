@@ -582,6 +582,10 @@ libraries = {
 "": SubResource("AnimationLibrary_cn6ll")
 }
 
+[node name="campfire_attack" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
 [connection signal="timeout" from="navigationtimer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="navigationtimer" to="." method="_on_navigationtimer_timeout"]
 [connection signal="timeout" from="jump_timer" to="." method="_on_jump_timer_timeout"]
