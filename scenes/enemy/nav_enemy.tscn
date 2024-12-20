@@ -569,10 +569,6 @@ light_mask = 0
 visibility_layer = 32
 target_position = Vector2(-153, -159)
 
-[node name="campfire_attack" type="Timer" parent="."]
-wait_time = 3.0
-one_shot = true
-
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_wfdyh")
 animation = &"atk"
@@ -589,4 +585,3 @@ libraries = {
 [connection signal="timeout" from="navigationtimer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="navigationtimer" to="." method="_on_navigationtimer_timeout"]
 [connection signal="timeout" from="jump_timer" to="." method="_on_jump_timer_timeout"]
-[connection signal="timeout" from="campfire_attack" to="." method="_on_campfire_attack_timeout"]
