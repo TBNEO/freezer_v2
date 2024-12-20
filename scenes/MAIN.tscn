@@ -10,6 +10,10 @@ script = ExtResource("1_d1yqb")
 [node name="MAIN" parent="." instance=ExtResource("1_ti3jq")]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
 
 [node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("3_g8ggc")]
 visible = false
+
+[connection signal="paused" from="CanvasLayer/PauseMenu" to="." method="pause_game"]
+[connection signal="resume" from="CanvasLayer/PauseMenu" to="." method="unpause_game"]

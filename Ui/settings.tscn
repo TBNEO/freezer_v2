@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://behm0w4unktx6"]
+[gd_scene load_steps=10 format=3 uid="uid://behm0w4unktx6"]
 
 [ext_resource type="Texture2D" uid="uid://b2c5y31q36ukg" path="res://assets/ui/optionsmenu_panel.png" id="1_6wojb"]
 [ext_resource type="Script" path="res://Ui/settings.gd" id="2_hr277"]
@@ -7,6 +7,7 @@
 [ext_resource type="LabelSettings" uid="uid://bsvtxtp0d1cel" path="res://Ui/basic_font_small.tres" id="4_pbtli"]
 [ext_resource type="Texture2D" uid="uid://tfo3x88jt6gi" path="res://assets/ui/slider.png" id="5_383sj"]
 [ext_resource type="Texture2D" uid="uid://bhj3oe0jcdhy3" path="res://assets/ui/slider_bar.png" id="6_m0b6n"]
+[ext_resource type="LabelSettings" uid="uid://ok3wg5k80n78" path="res://Ui/basic_font.tres" id="8_7ud01"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rmwxf"]
 
@@ -133,6 +134,15 @@ texture_pressed = ExtResource("3_1nrc4")
 layout_mode = 2
 text = "Hurt VFX Enabled"
 label_settings = ExtResource("4_pbtli")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 88.0
+offset_right = 157.0
+offset_bottom = 111.0
+text = "Press 'Esc' to return"
+label_settings = ExtResource("8_7ud01")
 
 [connection signal="button_down" from="VBoxContainer/Volume_SFX/Volume Toggle" to="." method="_on_volume_toggle_button_down"]
 [connection signal="drag_ended" from="VBoxContainer/Volume_SFX/HSlider" to="." method="_on_sfx_volume_drag_ended"]

@@ -25,8 +25,8 @@ radial_accel_max = 2.0
 scale_min = 2.0
 scale_max = 5.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_n4k3p"]
-size = Vector2(32, 32)
+[sub_resource type="CircleShape2D" id="CircleShape2D_blghs"]
+radius = 16.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2spjk"]
 atlas = ExtResource("2_lygdb")
@@ -483,7 +483,7 @@ process_material = SubResource("ParticleProcessMaterial_b7e6b")
 lifetime = 15.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_n4k3p")
+shape = SubResource("CircleShape2D_blghs")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_hln56")
