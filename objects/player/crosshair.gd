@@ -1,5 +1,7 @@
 extends Node2D
 
+@onready var audio = $AudioStreamPlayer2D
+
 var firing = false
 var fire_frames = 0
 const MAX_FIREFRAMES = 3
@@ -13,6 +15,7 @@ func _process(delta):
 	global_position = get_global_mouse_position()
 	
 	if Input.is_action_just_pressed("fire") and fire_time == 0:
+		audio.play()
 		fire_frames = MAX_FIREFRAMES
 		fire_time = FIRE_RATE
 		bullet_trail()

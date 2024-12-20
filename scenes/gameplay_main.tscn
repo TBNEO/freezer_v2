@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://wc23oia3n6p4"]
+[gd_scene load_steps=13 format=3 uid="uid://wc23oia3n6p4"]
 
 [ext_resource type="Script" path="res://objects/mechanics/main.gd" id="1_ox4y7"]
 [ext_resource type="Script" path="res://objects/player/crosshair.gd" id="2_vb2iv"]
 [ext_resource type="Texture2D" uid="uid://cdlve2txnqaxk" path="res://assets/ui/crosshair.png" id="3_6wlxf"]
 [ext_resource type="PackedScene" uid="uid://b6etsfjlk68g7" path="res://objects/player/player.tscn" id="4_hjfkt"]
 [ext_resource type="PackedScene" uid="uid://g5k6dw0rh36w" path="res://scenes/spawner/spawner.tscn" id="4_uru2h"]
+[ext_resource type="AudioStream" uid="uid://dej47qpwojsbs" path="res://assets/sounds/laserShoot.wav" id="6_euqtx"]
 [ext_resource type="PackedScene" uid="uid://dtnaqgr7vawkl" path="res://scenes/level.tscn" id="6_wndry"]
 [ext_resource type="Shader" uid="uid://xil7hew8di8q" path="res://objects/player/freeze_VFX.tres" id="7_obmfw"]
 [ext_resource type="Shader" uid="uid://dfhpewfwedvk7" path="res://objects/player/hurt_VFX.tres" id="8_thshu"]
@@ -50,6 +51,9 @@ script = ExtResource("2_vb2iv")
 [node name="Sprite2D" type="Sprite2D" parent="Crosshair"]
 modulate = Color(1, 0.415686, 0.443137, 1)
 texture = ExtResource("3_6wlxf")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Crosshair"]
+stream = ExtResource("6_euqtx")
 
 [node name="Pausable" type="Node" parent="."]
 

@@ -20,9 +20,6 @@ const JUMP_VELOCITY = -700.0
 @onready var campfire = get_tree().get_first_node_in_group("campfire")
 @onready var campfire_attack = $campfire_attack
 
-@onready var audio_stream_player_2d = $AudioStreamPlayer2D
-@onready var gpu_particles_2d = $GPUParticles2D
-
 func _physics_process(delta: float) -> void:
 	if navigation_agent_2d.distance_to_target() < 10.0 and campfire_attack.is_stopped():
 		campfire_attack.start()
