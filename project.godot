@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 Stats="*res://autoloads/STATS.gd"
 Campfire="*res://autoloads/Campfire.gd"
+Settings="*res://autoloads/SETTINGS.gd"
 
 [display]
 

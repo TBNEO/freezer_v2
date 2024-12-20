@@ -4,6 +4,7 @@ extends Node2D
 @onready var particles = $GPUParticles2D
 
 func _ready():
+	audio.volume_db = Settings.SFX_Volume*float(Settings.SFX_Enabled)
 	audio.play()
 	particles.restart()
 

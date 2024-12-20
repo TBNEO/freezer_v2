@@ -36,6 +36,7 @@ func style_add(amount: int):
 	Style += amount * StyleBoost
 
 func take_damage():
+	audio_node.volume_db = 1*Settings.SFX_Volume*float(Settings.SFX_Enabled)
 	audio_node.play()
 	hurt_vfx = 1.0
 	StyleBoost = 1

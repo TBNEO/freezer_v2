@@ -1,14 +1,142 @@
-[gd_scene format=3 uid="uid://behm0w4unktx6"]
+[gd_scene load_steps=9 format=3 uid="uid://behm0w4unktx6"]
 
-[node name="settings" type="TextureRect"]
+[ext_resource type="Texture2D" uid="uid://b2c5y31q36ukg" path="res://assets/ui/optionsmenu_panel.png" id="1_6wojb"]
+[ext_resource type="Script" path="res://Ui/settings.gd" id="2_hr277"]
+[ext_resource type="Texture2D" uid="uid://86ilk1lmt7br" path="res://assets/ui/checkmark_box.png" id="2_mfnyo"]
+[ext_resource type="Texture2D" uid="uid://2ml4tkaowtc8" path="res://assets/ui/checkmark_box_2.png" id="3_1nrc4"]
+[ext_resource type="LabelSettings" uid="uid://bsvtxtp0d1cel" path="res://Ui/basic_font_small.tres" id="4_pbtli"]
+[ext_resource type="Texture2D" uid="uid://tfo3x88jt6gi" path="res://assets/ui/slider.png" id="5_383sj"]
+[ext_resource type="Texture2D" uid="uid://bhj3oe0jcdhy3" path="res://assets/ui/slider_bar.png" id="6_m0b6n"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rmwxf"]
+
+[node name="settings" type="NinePatchRect"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+offset_left = -128.0
+offset_top = -128.0
+offset_right = 128.0
+offset_bottom = 128.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 4
+texture = ExtResource("1_6wojb")
+script = ExtResource("2_hr277")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 9.0
+offset_top = 29.0
+offset_right = -9.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Volume_SFX" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Volume Toggle" type="TextureButton" parent="VBoxContainer/Volume_SFX"]
+layout_mode = 2
+toggle_mode = true
+button_pressed = true
+texture_normal = ExtResource("2_mfnyo")
+texture_pressed = ExtResource("3_1nrc4")
+
+[node name="Label3" type="Label" parent="VBoxContainer/Volume_SFX"]
+layout_mode = 2
+text = "SFX Volume"
+label_settings = ExtResource("4_pbtli")
+
+[node name="HSlider" type="HSlider" parent="VBoxContainer/Volume_SFX"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_icons/grabber = ExtResource("5_383sj")
+theme_override_styles/slider = SubResource("StyleBoxTexture_rmwxf")
+value = 65.0
+ticks_on_borders = true
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/Volume_SFX/HSlider"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_m0b6n")
+
+[node name="Volume_MUSIC" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Music Toggle" type="TextureButton" parent="VBoxContainer/Volume_MUSIC"]
+layout_mode = 2
+toggle_mode = true
+button_pressed = true
+texture_normal = ExtResource("2_mfnyo")
+texture_pressed = ExtResource("3_1nrc4")
+
+[node name="Label2" type="Label" parent="VBoxContainer/Volume_MUSIC"]
+layout_mode = 2
+text = "Music Volume"
+label_settings = ExtResource("4_pbtli")
+
+[node name="HSlider" type="HSlider" parent="VBoxContainer/Volume_MUSIC"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_icons/grabber = ExtResource("5_383sj")
+theme_override_styles/slider = SubResource("StyleBoxTexture_rmwxf")
+value = 65.0
+ticks_on_borders = true
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/Volume_MUSIC/HSlider"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_m0b6n")
+
+[node name="Toggle_FreezeFX" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="FreezeVFX Toggle" type="TextureButton" parent="VBoxContainer/Toggle_FreezeFX"]
+layout_mode = 2
+toggle_mode = true
+button_pressed = true
+texture_normal = ExtResource("2_mfnyo")
+texture_pressed = ExtResource("3_1nrc4")
+
+[node name="Label2" type="Label" parent="VBoxContainer/Toggle_FreezeFX"]
+layout_mode = 2
+text = "Timefreeze VFX Enabled"
+label_settings = ExtResource("4_pbtli")
+
+[node name="Toggle_HurtFX" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="HurtVFX Toggle" type="TextureButton" parent="VBoxContainer/Toggle_HurtFX"]
+layout_mode = 2
+toggle_mode = true
+button_pressed = true
+texture_normal = ExtResource("2_mfnyo")
+texture_pressed = ExtResource("3_1nrc4")
+
+[node name="Label2" type="Label" parent="VBoxContainer/Toggle_HurtFX"]
+layout_mode = 2
+text = "Hurt VFX Enabled"
+label_settings = ExtResource("4_pbtli")
+
+[connection signal="button_down" from="VBoxContainer/Volume_SFX/Volume Toggle" to="." method="_on_volume_toggle_button_down"]
+[connection signal="drag_ended" from="VBoxContainer/Volume_SFX/HSlider" to="." method="_on_sfx_volume_drag_ended"]
+[connection signal="button_down" from="VBoxContainer/Volume_MUSIC/Music Toggle" to="." method="_on_music_toggle_button_down"]
+[connection signal="drag_ended" from="VBoxContainer/Volume_MUSIC/HSlider" to="." method="_on_music_drag_ended"]
+[connection signal="button_down" from="VBoxContainer/Toggle_FreezeFX/FreezeVFX Toggle" to="." method="_on_freeze_vfx_toggle_button_down"]
+[connection signal="button_down" from="VBoxContainer/Toggle_HurtFX/HurtVFX Toggle" to="." method="_on_hurt_vfx_toggle_button_down"]

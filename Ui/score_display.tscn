@@ -1,13 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://dt0g4kyfu8g57"]
+[gd_scene load_steps=6 format=3 uid="uid://dt0g4kyfu8g57"]
 
 [ext_resource type="Script" path="res://Ui/score_display.gd" id="1_n3jj6"]
-[ext_resource type="FontFile" uid="uid://bljgri75cp4v4" path="res://assets/fonts/Tiny5-Regular.ttf" id="2_5xxgu"]
 [ext_resource type="Texture2D" uid="uid://ddkjvx0i7muup" path="res://assets/ui/score_bg.png" id="2_wmffv"]
+[ext_resource type="LabelSettings" uid="uid://ok3wg5k80n78" path="res://Ui/basic_font.tres" id="3_7e2rl"]
 [ext_resource type="Texture2D" uid="uid://c6gj2jijdriqv" path="res://assets/ui/combo_decay_progress.png" id="4_p1sa8"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_7jpi7"]
-font = ExtResource("2_5xxgu")
-font_color = Color(0.133333, 0.12549, 0.203922, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6cq86"]
 
@@ -44,7 +40,7 @@ alignment = 1
 [node name="Style" type="Label" parent="Texture/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "STYLE:"
-label_settings = SubResource("LabelSettings_7jpi7")
+label_settings = ExtResource("3_7e2rl")
 
 [node name="HSeparator" type="HSeparator" parent="Texture/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -53,7 +49,7 @@ theme_override_styles/separator = SubResource("StyleBoxEmpty_6cq86")
 [node name="Style_Combo" type="Label" parent="Texture/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "COMBO:"
-label_settings = SubResource("LabelSettings_7jpi7")
+label_settings = ExtResource("3_7e2rl")
 
 [node name="ProgressBar" type="TextureProgressBar" parent="Texture/MarginContainer/VBoxContainer/Style_Combo"]
 layout_mode = 1

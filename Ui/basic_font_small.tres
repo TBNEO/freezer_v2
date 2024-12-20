@@ -1,0 +1,8 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://bsvtxtp0d1cel"]
+
+[ext_resource type="FontFile" uid="uid://bljgri75cp4v4" path="res://assets/fonts/Tiny5-Regular.ttf" id="1_2c5sq"]
+
+[resource]
+font = ExtResource("1_2c5sq")
+font_size = 8
+font_color = Color(0.133333, 0.12549, 0.203922, 1)
