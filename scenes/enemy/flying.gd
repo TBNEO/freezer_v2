@@ -73,6 +73,7 @@ func die():
 	Stats.style_add(10)
 	Stats.StyleBoost += 1
 	Stats.StyleDecay = Stats.MAX_STYLEDECAY
+	Stats.spawn_kill_fx(global_position)
 	queue_free()
 
 

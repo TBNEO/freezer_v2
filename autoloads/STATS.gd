@@ -1,8 +1,6 @@
 extends Node
 
-signal FAIL_DEATH
-
-var shader_override
+const VFX_NODE = preload("res://objects/killeffect/vfx_node.tscn")
 
 var Health := 10.0
 const MAXHEALTH := 10.0
@@ -14,6 +12,7 @@ var StyleDecay := 240
 const MAX_STYLEDECAY = 240
 
 var Crosshair
+var audio_node : AudioStreamPlayer2D
 
 var Freeze := false
 
@@ -28,15 +27,22 @@ var hurt_vfx = 0.0
 func _init():
 	process_priority = -1
 
+func _ready():
+	audio_node = AudioStreamPlayer2D.new()
+	audio_node.stream = load("res://assets/sounds/hit.wav")
+	add_child(audio_node)
+
 func style_add(amount: int):
 	Style += amount * StyleBoost
 
 func take_damage():
+	audio_node.play()
 	hurt_vfx = 1.0
 	StyleBoost = 1
 	Health -= 1
 	if Health <= 0:
-		FAIL_DEATH.emit()
+		audio_node.stream = load("res://assets/sounds/playerdead.wav")
+		audio_node.play()
 
 func _process(delta):
 	hurt_vfx = max(0, hurt_vfx - delta)
@@ -47,3 +53,9 @@ func _process(delta):
 			StyleDecay -= 1
 		else:
 			StyleBoost -= 1
+
+func spawn_kill_fx(pos: Vector2) -> void:
+	var vfx = VFX_NODE.instantiate()
+	get_tree().root.add_child(vfx)
+	vfx.position = pos
+	

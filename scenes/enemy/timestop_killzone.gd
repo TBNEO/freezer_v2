@@ -12,4 +12,5 @@ func _process(delta):
 			sprite_2d.visible = true
 	
 	if !Stats.Freeze and mark_for_death:
+		mark_for_death = false
 		owner.die()
