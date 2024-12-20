@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://ckqgr58khpyk1"]
+[gd_scene load_steps=9 format=3 uid="uid://ckqgr58khpyk1"]
 
 [ext_resource type="Script" path="res://Ui/main_menu.gd" id="1_unafi"]
 [ext_resource type="Texture2D" uid="uid://cuxdfxpe8bmrb" path="res://assets/ui/start_button.png" id="2_mcjy3"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://f2s3aj45qd3y" path="res://assets/ui/options_button.png" id="3_tp26x"]
 [ext_resource type="Texture2D" uid="uid://dlljqfmaytyg0" path="res://assets/ui/quit_button.png" id="4_8pfeq"]
 [ext_resource type="AudioStream" uid="uid://bu1rt75pmtmea" path="res://assets/sounds/click1.wav" id="5_se3ta"]
+[ext_resource type="PackedScene" uid="uid://behm0w4unktx6" path="res://Ui/settings.tscn" id="7_sns8w"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_i76i1"]
 
@@ -63,6 +64,10 @@ texture_normal = ExtResource("4_8pfeq")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_se3ta")
+
+[node name="settings" parent="." instance=ExtResource("7_sns8w")]
+layout_mode = 0
+anchors_preset = 0
 
 [connection signal="button_down" from="VBoxContainer/START" to="." method="_on_start_button_down"]
 [connection signal="button_down" from="VBoxContainer/OPTIONS" to="." method="_on_options_button_down"]

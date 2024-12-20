@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://wc23oia3n6p4"]
+[gd_scene load_steps=15 format=3 uid="uid://wc23oia3n6p4"]
 
 [ext_resource type="Script" path="res://objects/mechanics/main.gd" id="1_ox4y7"]
 [ext_resource type="Script" path="res://objects/player/crosshair.gd" id="2_vb2iv"]
@@ -9,6 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://dtnaqgr7vawkl" path="res://scenes/level.tscn" id="6_wndry"]
 [ext_resource type="Shader" uid="uid://xil7hew8di8q" path="res://objects/player/freeze_VFX.tres" id="7_obmfw"]
 [ext_resource type="Shader" uid="uid://dfhpewfwedvk7" path="res://objects/player/hurt_VFX.tres" id="8_thshu"]
+[ext_resource type="PackedScene" uid="uid://c4pixchkiv7gy" path="res://scenes/enemy/nav_enemy.tscn" id="10_exvn6"]
+[ext_resource type="PackedScene" uid="uid://dhj5g0b46h7jj" path="res://scenes/enemy/flying.tscn" id="11_26gvk"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6d405"]
 shader = ExtResource("7_obmfw")
@@ -19,8 +21,8 @@ shader = ExtResource("8_thshu")
 shader_parameter/Hurt = 0.0
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_wshwg"]
-vertices = PackedVector2Array(1240, 40, 1240, -40, 1310, -70, 1310, 200, 1180, 200, 1180, 170, 980, 40, 1040, 170, 940, 140, 10, -220, -49.1406, -220, -49.0234, -302, 1550, -302, 1550, -220, 1490, -220, 1490, -70, 980, -40, 520, 40, 520, -40, 560, 140, 290, -40, 190, -70, 1040, 200, 940, 200, 560, 200, 460, 200, 460, 170, 290, 40, 320, 170, 320, 200, 190, 200, 10, -70)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(0, 3, 4, 5), PackedInt32Array(6, 0, 5, 7, 8), PackedInt32Array(9, 10, 11, 12), PackedInt32Array(12, 13, 14), PackedInt32Array(9, 12, 14), PackedInt32Array(9, 14, 15, 2), PackedInt32Array(9, 2, 1, 16), PackedInt32Array(17, 18, 16, 6, 8, 19), PackedInt32Array(9, 16, 18), PackedInt32Array(9, 18, 20, 21), PackedInt32Array(7, 22, 23, 8), PackedInt32Array(19, 24, 25, 26, 17), PackedInt32Array(27, 17, 26, 28), PackedInt32Array(28, 29, 30, 21, 27), PackedInt32Array(20, 27, 21), PackedInt32Array(9, 21, 31)])
+vertices = PackedVector2Array(1240, 40, 1240, -40, 1310, -70, 1310, 200, 1180, 200, 1180, 170, 980, 40, 1040, 170, 940, 140, 1490, -302, 1490, -70, 10, -302, 980, -40, 520, 40, 520, -40, 560, 140, 290, -40, 190, -70, 1040, 200, 940, 200, 560, 200, 460, 200, 460, 170, 290, 40, 320, 170, 320, 200, 190, 200, 10, -70)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(0, 3, 4, 5), PackedInt32Array(6, 0, 5, 7, 8), PackedInt32Array(9, 10, 2, 11), PackedInt32Array(11, 2, 1, 12), PackedInt32Array(13, 14, 12, 6, 8, 15), PackedInt32Array(11, 12, 14), PackedInt32Array(11, 14, 16, 17), PackedInt32Array(7, 18, 19, 8), PackedInt32Array(15, 20, 21, 22, 13), PackedInt32Array(23, 13, 22, 24), PackedInt32Array(24, 25, 26, 17, 23), PackedInt32Array(16, 23, 17), PackedInt32Array(11, 17, 27)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-59, -312, 1560, -312, 1560, 330, -60, 330)])
 
 [node name="MAIN" type="Node2D" groups=["main"]]
@@ -58,6 +60,7 @@ stream = ExtResource("6_euqtx")
 [node name="Pausable" type="Node" parent="."]
 
 [node name="spawner" parent="Pausable" node_paths=PackedStringArray("SpawnPoints") instance=ExtResource("4_uru2h")]
+process_mode = 4
 SpawnPoints = [NodePath("Spawnpoint1"), NodePath("Spawnpoint4"), NodePath("Spawnpoint2"), NodePath("Spawnpoint3")]
 
 [node name="Spawnpoint1" type="Marker2D" parent="Pausable/spawner"]
@@ -79,6 +82,12 @@ position = Vector2(726, 45)
 navigation_polygon = SubResource("NavigationPolygon_wshwg")
 
 [node name="Level" parent="Pausable/NavigationRegion2D" instance=ExtResource("6_wndry")]
+
+[node name="nav_enemy" parent="Pausable" instance=ExtResource("10_exvn6")]
+position = Vector2(635, 113)
+
+[node name="Flying" parent="Pausable" instance=ExtResource("11_26gvk")]
+position = Vector2(860, -124)
 
 [node name="FPS_checker" type="Timer" parent="."]
 autostart = true

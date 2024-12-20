@@ -45,4 +45,7 @@ tile_map_data = PackedByteArray("AAAzAAoAAQABAAIAAAAzAAkAAQABAAEAAAAyAAoAAQABAAI
 tile_set = ExtResource("1_tixup")
 
 [node name="Campfire" parent="." instance=ExtResource("2_dsp6y")]
-position = Vector2(751, 148)
+position = Vector2(751, 137)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer" parent="."]
+autoplay = true

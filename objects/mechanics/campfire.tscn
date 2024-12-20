@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cmen2axkfrqpl"]
+[gd_scene load_steps=7 format=3 uid="uid://cmen2axkfrqpl"]
 
 [ext_resource type="Texture2D" uid="uid://bgrqcoijmxtn6" path="res://assets/objects/fire sprite-Sheet.png" id="1_mspee"]
 
@@ -38,16 +38,10 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_jpekp"]
-
 [node name="Campfire" type="Node2D" groups=["campfire"]]
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 10)
 sprite_frames = SubResource("SpriteFrames_233r0")
 autoplay = "default"
 frame_progress = 0.446331
-
-[node name="Area2D" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("RectangleShape2D_jpekp")

@@ -21,21 +21,25 @@ const JUMP_VELOCITY = -700.0
 @onready var campfire_attack = $campfire_attack
 
 func _physics_process(delta: float) -> void:
-	if navigation_agent_2d.distance_to_target() < 10.0 and campfire_attack.is_stopped():
-		campfire_attack.start()
 	
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
 	if right.is_colliding()and jump_timer == true:
-		velocity.y = JUMP_VELOCITY
-		jump_timer=false
-	if left.is_colliding() and jump_timer == true :
-		animated_sprite_2d.pause()
 		animation_player.play("jump")
 		velocity.y = JUMP_VELOCITY
 		jump_timer=false
-
+	elif left.is_colliding() and jump_timer == true :
+		animation_player.play("jump")
+		velocity.y = JUMP_VELOCITY
+		jump_timer=false
+	else:
+		if is_on_floor():
+			if global_position.distance_to(navigation_agent_2d.target_position) > 30:
+				animation_player.play("walk")
+			else:
+				if animation_player.current_animation != "idle" and animation_player.current_animation != "atk":
+					animation_player.play("idle")
 
 	var direction = Vector2.ZERO
 	direction  = global_position.direction_to(navigation_agent_2d.get_next_path_position())
@@ -49,6 +53,11 @@ func _physics_process(delta: float) -> void:
 		animated_sprite_2d.flip_h= true
 	elif direction.x <0:
 		animated_sprite_2d.flip_h=false
+	
+	if global_position.distance_to(navigation_agent_2d.target_position) < 30.0 and campfire_attack.is_stopped():
+		campfire_attack.start()
+		velocity.x = 0.0
+	
 	move_and_slide()
 	
 	
@@ -67,4 +76,7 @@ func die():
 	queue_free()
 
 func _on_campfire_attack_timeout():
+	animation_player.play("atk")
 	Campfire.damage_campfire()
+	await animation_player.animation_finished
+	campfire_attack.start()
