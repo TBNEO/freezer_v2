@@ -4,16 +4,19 @@ extends Control
 @onready var settings = $settings
 
 func _on_start_button_down():
-	audio.play()
+	if Settings.SFX_Enabled:
+		audio.play()
 	get_tree().change_scene_to_file("res://scenes/MAIN.tscn")
 
 func _on_options_button_down():
 	settings.show()
-	audio.play()
+	if Settings.SFX_Enabled:
+		audio.play()
 	pass
 
 func _on_quit_button_down():
-	audio.play()
+	if Settings.SFX_Enabled:
+		audio.play()
 	get_tree().quit()
 
 func _unhandled_input(event):

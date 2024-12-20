@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://cpnoy2eagm1qr"]
 
-[ext_resource type="Script" path="res://Ui/Healthstuff.gd" id="1_5rtyg"]
 [ext_resource type="Texture2D" uid="uid://bl47o2d53vqb1" path="res://assets/ui/campfire_healthbar.png" id="1_fu7gq"]
+[ext_resource type="Script" path="res://Ui/health_ui.gd" id="1_wy67e"]
 [ext_resource type="Texture2D" uid="uid://vdonwui6vln7" path="res://assets/ui/campfire_icon.png" id="2_5ed0s"]
 [ext_resource type="Texture2D" uid="uid://bwy37s2kaoqmb" path="res://assets/ui/campfire_health.png" id="3_kftnn"]
 [ext_resource type="Texture2D" uid="uid://dvidwjn74xptj" path="res://assets/ui/healthbar.png" id="4_cu5fv"]
@@ -14,7 +14,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_5rtyg")
+script = ExtResource("1_wy67e")
 
 [node name="HBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1

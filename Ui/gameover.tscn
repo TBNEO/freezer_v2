@@ -1,0 +1,65 @@
+[gd_scene load_steps=6 format=3 uid="uid://bwiny3lvc1c8a"]
+
+[ext_resource type="Script" path="res://Ui/Gameover.gd" id="1_v6dtf"]
+[ext_resource type="Texture2D" uid="uid://hppbvsjexsdf" path="res://assets/background/background_ui.png" id="2_5utgi"]
+[ext_resource type="Texture2D" uid="uid://cugj6x7nila0y" path="res://assets/ui/game over.png" id="3_0rwo2"]
+[ext_resource type="LabelSettings" uid="uid://ok3wg5k80n78" path="res://Ui/basic_font.tres" id="4_dce3r"]
+[ext_resource type="Texture2D" uid="uid://dnbu5pvfmvo2a" path="res://assets/ui/restart.png" id="5_dxxjj"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_v6dtf")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_5utgi")
+centered = false
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -176.0
+offset_top = -142.0
+offset_right = 176.0
+offset_bottom = 142.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_0rwo2")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TextureRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -124.0
+offset_top = -33.0
+offset_right = 4.0
+offset_bottom = 75.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="TextureRect/VBoxContainer"]
+layout_mode = 2
+text = "Score:"
+label_settings = ExtResource("4_dce3r")
+
+[node name="Label2" type="Label" parent="TextureRect/VBoxContainer"]
+layout_mode = 2
+text = "Cause: "
+label_settings = ExtResource("4_dce3r")
+
+[node name="TextureButton" type="TextureButton" parent="TextureRect/VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("5_dxxjj")
+
+[connection signal="button_down" from="TextureRect/VBoxContainer/TextureButton" to="." method="_on_texture_button_button_down"]

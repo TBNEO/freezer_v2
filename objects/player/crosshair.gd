@@ -16,7 +16,8 @@ func _process(delta):
 	
 	if Input.is_action_just_pressed("fire") and fire_time == 0:
 		audio.volume_db = 1*Settings.SFX_Volume*float(Settings.SFX_Enabled)
-		audio.play()
+		if Settings.SFX_Enabled and Settings.SFX_Volume > 0:
+			audio.play()
 		fire_frames = MAX_FIREFRAMES
 		fire_time = FIRE_RATE
 		bullet_trail()

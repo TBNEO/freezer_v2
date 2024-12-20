@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://bi1d6r8c5c7qj" path="res://assets/objects/Sprite dash animation-Sheet.png" id="2_lygdb"]
 [ext_resource type="PackedScene" uid="uid://dt0g4kyfu8g57" path="res://Ui/score_display.tscn" id="3_dtgn7"]
 [ext_resource type="Texture2D" uid="uid://s1v2rlnyvfhw" path="res://assets/objects/Sprite jump animation-Sheet.png" id="4_nxqcu"]
-[ext_resource type="PackedScene" uid="uid://cpnoy2eagm1qr" path="res://Ui/campfire_health.tscn" id="4_qco73"]
+[ext_resource type="PackedScene" uid="uid://cpnoy2eagm1qr" path="res://Ui/health_ui.tscn" id="4_qco73"]
 [ext_resource type="Texture2D" uid="uid://be2kxoldorst3" path="res://assets/objects/Sprite sheet run.png" id="5_5ksnu"]
 [ext_resource type="PackedScene" uid="uid://83s0iqcoy2c2" path="res://objects/dmgboxes/hurtbox_player.tscn" id="5_w6aqa"]
 [ext_resource type="Script" path="res://objects/player/camera_2d.gd" id="6_r3uu4"]
@@ -520,11 +520,11 @@ offset_right = 40.0
 grow_horizontal = 1
 grow_vertical = 1
 
-[node name="Control2" parent="CanvasLayer" instance=ExtResource("4_qco73")]
-
 [node name="Control3" parent="CanvasLayer" instance=ExtResource("6_vuvp8")]
 offset_top = 58.0
 offset_bottom = 58.0
+
+[node name="Control2" parent="CanvasLayer" instance=ExtResource("4_qco73")]
 
 [node name="HurtboxPlayer" parent="." instance=ExtResource("5_w6aqa")]
 collision_mask = 4

@@ -17,6 +17,9 @@ var SPEED = 200
 
 var locked: bool = false
 
+func _ready():
+	audio.volume_db = 1*Settings.SFX_Volume
+
 func _physics_process(delta: float) -> void:
 	
 	if not is_on_floor():
@@ -73,6 +76,11 @@ func die():
 	queue_free()
 
 func _on_explode_detect_body_entered(body: Node2D) -> void:
+	if locked: return
+	$navigation_timer.stop()
+	$explode_detect.call_deferred("set", "monitoring", false)
+	$TimestopKillzone.call_deferred("set", "monitoring", false)
+	set_collision_layer_value(3, false)
 	explod.hide()
 	explode_sprite.show()
 	velocity.x = 0.0
@@ -82,7 +90,8 @@ func _on_explode_detect_body_entered(body: Node2D) -> void:
 	animation_player.play("explode")
 	await animation_player.animation_finished
 	particles.restart()
-	audio.play()
+	if Settings.SFX_Enabled and Settings.SFX_Volume > 0:
+		audio.play()
 	if global_position.distance_to(body.global_position) < 75:
 		Stats.take_damage()
 	self.hide()

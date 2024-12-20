@@ -1,21 +1,32 @@
 extends NinePatchRect
 
-func _on_volume_toggle_button_down():
-	Settings.SFX_Enabled = $"VBoxContainer/Volume_SFX/Volume Toggle".button_pressed
+@onready var volumeslider = $VBoxContainer/Volume_SFX/HSlider
+@onready var musicslider = $VBoxContainer/Volume_MUSIC/HSlider
+@onready var audio = $AudioStreamPlayer2D
 
-func _on_music_toggle_button_down():
-	Settings.Music_Enabled = $"VBoxContainer/Volume_MUSIC/Music Toggle".button_pressed
-
-func _on_freeze_vfx_toggle_button_down():
-	Settings.Timefreeze_VFX = $"VBoxContainer/Toggle_FreezeFX/FreezeVFX Toggle".button_pressed
-
-func _on_hurt_vfx_toggle_button_down():
-	Settings.Hurt_VFX = $"VBoxContainer/Toggle_HurtFX/HurtVFX Toggle".button_pressed
 
 func _on_sfx_volume_drag_ended(value_changed):
-	if !value_changed: return
-	Settings.SFX_Volume = $VBoxContainer/Volume_SFX/HSlider.value/100
+	Settings.SFX_Volume = volumeslider.value/10
 
 func _on_music_drag_ended(value_changed):
-	if !value_changed: return
-	Settings.Music_Volume = $VBoxContainer/Volume_Music/HSlider.value/100
+	Settings.Music_Volume = musicslider.value/10
+
+func _on_volume_toggle_toggled(toggled_on):
+	if Settings.SFX_Enabled:
+		audio.play()
+	Settings.SFX_Enabled = toggled_on
+
+func _on_music_toggle_toggled(toggled_on):
+	if Settings.SFX_Enabled:
+		audio.play()
+	Settings.Music_Enabled = toggled_on
+
+func _on_freeze_vfx_toggle_toggled(toggled_on):
+	if Settings.SFX_Enabled:
+		audio.play()
+	Settings.Timefreeze_VFX = toggled_on
+
+func _on_hurt_vfx_toggle_toggled(toggled_on):
+	if Settings.SFX_Enabled:
+		audio.play()
+	Settings.Hurt_VFX = toggled_on

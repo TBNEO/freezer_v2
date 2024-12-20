@@ -4,15 +4,16 @@
 
 [node name="spawner" type="Node2D"]
 script = ExtResource("1_rsnf4")
-can_spawn_b = false
 
 [node name="a" type="Timer" parent="."]
 autostart = true
 
 [node name="b" type="Timer" parent="."]
+wait_time = 3.0
 autostart = true
 
 [node name="c" type="Timer" parent="."]
+wait_time = 2.0
 autostart = true
 
 [connection signal="timeout" from="a" to="." method="_on_a_timeout"]

@@ -6,7 +6,7 @@ extends Node2D
 var distance = 300
 
 var enemy_node_A = preload("res://scenes/enemy/nav_enemy.tscn")
-var enemy_node_B = preload("res://scenes/enemy/nav_enemy.tscn")
+var enemy_node_B = preload("res://scenes/enemy/exploding_enemy.tscn")
 var enemy_node_C = preload("res://scenes/enemy/flying.tscn")
 var can_spawn_A =  true
 var can_spawn_B =  true

@@ -1,9 +1,10 @@
-[gd_scene load_steps=30 format=3 uid="uid://cocc3qgq7i3ii"]
+[gd_scene load_steps=31 format=3 uid="uid://cocc3qgq7i3ii"]
 
 [ext_resource type="Texture2D" uid="uid://dwmcxh3o0036o" path="res://assets/explod/Exploding animation exploding monster/Explosion monster explosion -Sheet.png" id="1_ahuk4"]
 [ext_resource type="Script" path="res://scenes/enemy/exploding_enemy.gd" id="1_ulqjq"]
 [ext_resource type="Texture2D" uid="uid://cu6wl6hc2e7vv" path="res://assets/explod/Moving explosion monster/Explosion monster moving animation-Sheet.png" id="2_qmb0x"]
 [ext_resource type="AudioStream" uid="uid://bdgyb4n8k6oc2" path="res://assets/sounds/enemydead1.wav" id="4_wwvgx"]
+[ext_resource type="PackedScene" uid="uid://dd4jkpoqertne" path="res://scenes/enemy/timestop_killzone.tscn" id="5_4l70n"]
 
 [sub_resource type="Animation" id="Animation_qnchn"]
 length = 0.001
@@ -237,7 +238,7 @@ hue_variation_max = 0.1
 collision_layer = 4
 script = ExtResource("1_ulqjq")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." groups=["player"]]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_yvst4")
 }
@@ -284,7 +285,7 @@ position = Vector2(-5, -14)
 sprite_frames = SubResource("SpriteFrames_omrrb")
 animation = &"walk"
 autoplay = "walk"
-frame_progress = 0.744367
+frame_progress = 0.0119983
 
 [node name="navigation_timer" type="Timer" parent="."]
 wait_time = 0.2
@@ -301,6 +302,8 @@ explosiveness = 0.8
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_wwvgx")
 pitch_scale = 0.25
+
+[node name="TimestopKillzone" parent="." instance=ExtResource("5_4l70n")]
 
 [connection signal="timeout" from="jump_timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="jump_timer" to="." method="_on_jump_timer_timeout"]

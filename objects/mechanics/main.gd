@@ -18,15 +18,17 @@ func _process(delta):
 	var last_freezetime = Stats.freeze_time
 	Stats.freeze_time = max(0, Stats.freeze_time - 1)
 	if last_freezetime > 0 and Stats.freeze_time == 0:
-		audio_stream_player.volume_db = 1*Settings.SFX_Volume*float(Settings.SFX_Enabled)
-		audio_stream_player.play()
+		audio_stream_player.volume_db = 1*Settings.SFX_Volume
+		if Settings.SFX_Enabled:
+			audio_stream_player.play()
 		Stats.freeze_cd = Stats.MAX_FREEZE_CD
 	
 	Stats.Freeze = (Stats.freeze_time != 0)
 	
 	
 	if Input.is_action_just_pressed("freeze") and Stats.freeze_cd == 0:
-		audio_stream_player.play()
+		if Settings.SFX_Enabled:
+			audio_stream_player.play()
 		Stats.freeze_time = Stats.MAX_FREEZE
 	
 	if Stats.freeze_time > 0:

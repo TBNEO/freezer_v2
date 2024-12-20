@@ -24,10 +24,13 @@ var freeze_cd = 0
 
 var hurt_vfx = 0.0
 
+var dead := false
+
 func _init():
 	process_priority = -1
 
 func _ready():
+	Health = MAXHEALTH
 	audio_node = AudioStreamPlayer2D.new()
 	audio_node.stream = load("res://assets/sounds/hit.wav")
 	add_child(audio_node)
@@ -36,18 +39,22 @@ func style_add(amount: int):
 	Style += amount * StyleBoost
 
 func take_damage():
-	audio_node.volume_db = 1*Settings.SFX_Volume*float(Settings.SFX_Enabled)
-	audio_node.play()
+	if dead: return
+	audio_node.volume_db = 1*Settings.SFX_Volume
+	if Settings.SFX_Enabled and Settings.SFX_Volume > 0: audio_node.play()
 	hurt_vfx = 1.0
 	StyleBoost = 1
 	Health -= 1
 	if Health <= 0:
+		dead = true
 		audio_node.stream = load("res://assets/sounds/playerdead.wav")
 		audio_node.play()
 		var player = get_tree().get_first_node_in_group("player")
 		player.hide()
-		player.process_mode = Node.PROCESS_MODE_DISABLED
+		player.set_process(false)
 		spawn_kill_fx(player.global_position)
+		await get_tree().create_timer(5.0).timeout
+		get_tree().change_scene_to_file("res://Ui/gameover.tscn")
 
 func _process(delta):
 	hurt_vfx = max(0, hurt_vfx - delta)
