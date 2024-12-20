@@ -43,6 +43,10 @@ func take_damage():
 	if Health <= 0:
 		audio_node.stream = load("res://assets/sounds/playerdead.wav")
 		audio_node.play()
+		var player = get_tree().get_first_node_in_group("player")
+		player.hide()
+		player.process_mode = Node.PROCESS_MODE_DISABLED
+		spawn_kill_fx(player.global_position)
 
 func _process(delta):
 	hurt_vfx = max(0, hurt_vfx - delta)
