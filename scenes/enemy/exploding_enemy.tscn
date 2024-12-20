@@ -1,0 +1,210 @@
+[gd_scene load_steps=19 format=3 uid="uid://5otn4vqfj7e5"]
+
+[ext_resource type="Texture2D" uid="uid://dwmcxh3o0036o" path="res://assets/explod/Exploding animation exploding monster/Explosion monster explosion -Sheet.png" id="1_ahuk4"]
+[ext_resource type="Script" path="res://scenes/enemy/exploding_enemy.gd" id="1_ulqjq"]
+[ext_resource type="Texture2D" uid="uid://cu6wl6hc2e7vv" path="res://assets/explod/Moving explosion monster/Explosion monster moving animation-Sheet.png" id="2_qmb0x"]
+
+[sub_resource type="Animation" id="Animation_qnchn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("explod:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("run:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_tbhuq"]
+resource_name = "explode"
+length = 0.533337
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("explod:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.133333, 0.2, 0.266667, 0.333333, 0.4, 0.466667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.533333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_die"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_6uj2b"]
+resource_name = "run"
+length = 0.56667
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("run:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.133333, 0.2, 0.266667, 0.333333, 0.4, 0.466667, 0.533333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 7]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yvst4"]
+_data = {
+"RESET": SubResource("Animation_qnchn"),
+"explode": SubResource("Animation_tbhuq"),
+"run": SubResource("Animation_6uj2b")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4xcv3"]
+radius = 14.1421
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vo1dq"]
+radius = 73.2462
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qulfo"]
+atlas = ExtResource("2_qmb0x")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wihpq"]
+atlas = ExtResource("2_qmb0x")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q0d1s"]
+atlas = ExtResource("2_qmb0x")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_73n2k"]
+atlas = ExtResource("2_qmb0x")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gcjxc"]
+atlas = ExtResource("2_qmb0x")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ii06f"]
+atlas = ExtResource("2_qmb0x")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r1lvd"]
+atlas = ExtResource("2_qmb0x")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uo3u4"]
+atlas = ExtResource("2_qmb0x")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_omrrb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qulfo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wihpq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q0d1s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_73n2k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gcjxc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ii06f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r1lvd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uo3u4")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 12.0
+}]
+
+[node name="Exploders" type="CharacterBody2D"]
+script = ExtResource("1_ulqjq")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." groups=["player"]]
+libraries = {
+"": SubResource("AnimationLibrary_yvst4")
+}
+
+[node name="run" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("2_qmb0x")
+hframes = 8
+
+[node name="explod" type="Sprite2D" parent="."]
+texture = ExtResource("1_ahuk4")
+hframes = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_4xcv3")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(136, -144)
+
+[node name="RayCast2D2" type="RayCast2D" parent="."]
+rotation = -1.5708
+target_position = Vector2(136, -144)
+
+[node name="jump_timer" type="Timer" parent="."]
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+avoidance_enabled = true
+debug_enabled = true
+
+[node name="explode_detect" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="explode_detect"]
+shape = SubResource("CircleShape2D_vo1dq")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_omrrb")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.473823
+
+[node name="navigation_timer" type="Timer" parent="."]
+wait_time = 0.2
+autostart = true
+
+[connection signal="timeout" from="jump_timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="jump_timer" to="." method="_on_jump_timer_timeout"]
+[connection signal="area_entered" from="explode_detect" to="." method="_on_explode_detect_area_entered"]
+[connection signal="body_entered" from="explode_detect" to="." method="_on_explode_detect_body_entered"]
+[connection signal="timeout" from="navigation_timer" to="." method="_on_navigation_timer_timeout"]

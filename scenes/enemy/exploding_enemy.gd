@@ -1,24 +1,16 @@
 extends CharacterBody2D
 
 
-
-
-@export var jump_timer =true
-
-
-const  SPEED = 100
-const JUMP_VELOCITY = -700.0
-
-
-@onready var right: RayCast2D = $right
-@onready var left: RayCast2D = $left
-
+var jump_timer = true
+var JUMP_VELOCITY = -400
+var SPEED = 100
+@onready var animation_player: AnimationPlayer =$AnimationPlayer
+@onready var left: RayCast2D = $RayCast2D
+@onready var right: RayCast2D = $RayCast2D2
 @onready var navigation_agent_2d: NavigationAgent2D = $NavigationAgent2D
-@onready var animation_player: AnimationPlayer = $AnimationPlayer
-@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
+@onready var explod = $AnimatedSprite2D
 
-@onready var campfire = get_tree().get_first_node_in_group("campfire")
-@onready var campfire_attack = $campfire_attack
+@onready var player = get_tree().get_first_node_in_group("player")
 
 func _physics_process(delta: float) -> void:
 	
@@ -26,11 +18,11 @@ func _physics_process(delta: float) -> void:
 		velocity += get_gravity() * delta
 
 	if right.is_colliding()and jump_timer == true:
-		animation_player.play("jump")
+		#animation_player.play("jump")
 		velocity.y = JUMP_VELOCITY
 		jump_timer=false
 	elif left.is_colliding() and jump_timer == true :
-		animation_player.play("jump")
+		#animation_player.play("jump")
 		velocity.y = JUMP_VELOCITY
 		jump_timer=false
 	else:
@@ -50,27 +42,31 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.x = lerpf(velocity.x, 0.0, 0.2)
 	if direction.x >0:
-		animated_sprite_2d.flip_h= true
+		explod.flip_h= true
 	elif direction.x <0:
-		animated_sprite_2d.flip_h=false
+		explod.flip_h=false
 	
-	if global_position.distance_to(navigation_agent_2d.target_position) < 30.0 and campfire_attack.is_stopped():
-		campfire_attack.start()
+	#if global_position.distance_to(navigation_agent_2d.target_position) < 30.0 and campfire_attack.is_stopped():
+		#campfire_attack.start()
 		velocity.x = 0.0
 	
 	move_and_slide()
 	
 	
 
-func _on_navigationtimer_timeout() -> void:
-	navigation_agent_2d.target_position = campfire.global_position
 
 func _on_jump_timer_timeout() -> void:
 	jump_timer = true
+	print(jump_timer)
 
-func die():
-	Stats.style_add(10)
-	Stats.StyleBoost += 1
-	Stats.StyleDecay = Stats.MAX_STYLEDECAY
-	Stats.spawn_kill_fx(global_position)
+func _die():
 	queue_free()
+
+func _on_explode_detect_body_entered(body: Node2D) -> void:
+	explod.stop()
+	if body.is_in_group("player"):
+		animation_player.play("explode")
+
+
+func _on_navigation_timer_timeout() -> void:
+	navigation_agent_2d.target_position = player.global_position

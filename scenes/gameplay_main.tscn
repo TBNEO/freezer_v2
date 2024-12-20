@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://wc23oia3n6p4"]
+[gd_scene load_steps=15 format=3 uid="uid://wc23oia3n6p4"]
 
 [ext_resource type="Script" path="res://objects/mechanics/main.gd" id="1_ox4y7"]
 [ext_resource type="Script" path="res://objects/player/crosshair.gd" id="2_vb2iv"]
@@ -9,8 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dtnaqgr7vawkl" path="res://scenes/level.tscn" id="6_wndry"]
 [ext_resource type="Shader" uid="uid://xil7hew8di8q" path="res://objects/player/freeze_VFX.tres" id="7_obmfw"]
 [ext_resource type="Shader" uid="uid://dfhpewfwedvk7" path="res://objects/player/hurt_VFX.tres" id="8_thshu"]
-[ext_resource type="PackedScene" uid="uid://c4pixchkiv7gy" path="res://scenes/enemy/nav_enemy.tscn" id="10_exvn6"]
-[ext_resource type="PackedScene" uid="uid://dhj5g0b46h7jj" path="res://scenes/enemy/flying.tscn" id="11_26gvk"]
+[ext_resource type="PackedScene" uid="uid://5otn4vqfj7e5" path="res://scenes/enemy/exploding_enemy.tscn" id="10_ko6qs"]
 [ext_resource type="AudioStream" uid="uid://cai1y6fnmkp4m" path="res://assets/sounds/playerdead1.wav" id="12_thi7j"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6d405"]
@@ -85,11 +84,8 @@ navigation_polygon = SubResource("NavigationPolygon_wshwg")
 
 [node name="Level" parent="Pausable/NavigationRegion2D" instance=ExtResource("6_wndry")]
 
-[node name="nav_enemy" parent="Pausable" instance=ExtResource("10_exvn6")]
-position = Vector2(635, 113)
-
-[node name="Flying" parent="Pausable" instance=ExtResource("11_26gvk")]
-position = Vector2(860, -124)
+[node name="Exploders" parent="." instance=ExtResource("10_ko6qs")]
+position = Vector2(821, -100)
 
 [node name="FPS_checker" type="Timer" parent="."]
 autostart = true
