@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://ckqgr58khpyk1"]
+[gd_scene load_steps=10 format=3 uid="uid://ckqgr58khpyk1"]
 
 [ext_resource type="Script" path="res://Ui/main_menu.gd" id="1_unafi"]
 [ext_resource type="Texture2D" uid="uid://cuxdfxpe8bmrb" path="res://assets/ui/start_button.png" id="2_mcjy3"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dlljqfmaytyg0" path="res://assets/ui/quit_button.png" id="4_8pfeq"]
 [ext_resource type="AudioStream" uid="uid://bu1rt75pmtmea" path="res://assets/sounds/click1.wav" id="5_se3ta"]
 [ext_resource type="PackedScene" uid="uid://behm0w4unktx6" path="res://Ui/settings.tscn" id="7_sns8w"]
+[ext_resource type="AudioStream" uid="uid://d1dl4lir2odqj" path="res://assets/sounds/freeze game ui1.mp3" id="8_1vpan"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_i76i1"]
 
@@ -62,13 +63,19 @@ layout_mode = 2
 size_flags_horizontal = 4
 texture_normal = ExtResource("4_8pfeq")
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+[node name="Clicksound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_se3ta")
 
 [node name="settings" parent="." instance=ExtResource("7_sns8w")]
 visible = false
 layout_mode = 1
 
+[node name="MenuTheme" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_1vpan")
+volume_db = -4.0
+autoplay = true
+
 [connection signal="button_down" from="VBoxContainer/START" to="." method="_on_start_button_down"]
 [connection signal="button_down" from="VBoxContainer/OPTIONS" to="." method="_on_options_button_down"]
 [connection signal="button_down" from="VBoxContainer/QUIT" to="." method="_on_quit_button_down"]
+[connection signal="finished" from="MenuTheme" to="." method="_on_menu_theme_finished"]

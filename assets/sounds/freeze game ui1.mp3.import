@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://d1dl4lir2odqj"
+path="res://.godot/imported/freeze game ui1.mp3-f833531095a6de696a06dbe523cfb8f1.mp3str"
+
+[deps]
+
+source_file="res://assets/sounds/freeze game ui1.mp3"
+dest_files=["res://.godot/imported/freeze game ui1.mp3-f833531095a6de696a06dbe523cfb8f1.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
