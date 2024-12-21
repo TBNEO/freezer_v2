@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://ckqgr58khpyk1"]
+[gd_scene load_steps=11 format=3 uid="uid://ckqgr58khpyk1"]
 
 [ext_resource type="Script" path="res://Ui/main_menu.gd" id="1_unafi"]
 [ext_resource type="Texture2D" uid="uid://cuxdfxpe8bmrb" path="res://assets/ui/start_button.png" id="2_mcjy3"]
 [ext_resource type="Texture2D" uid="uid://hppbvsjexsdf" path="res://assets/background/background_ui.png" id="2_px7j0"]
+[ext_resource type="Texture2D" uid="uid://o0smr1vhghor" path="res://assets/ui/title.png" id="3_2dxfd"]
 [ext_resource type="Texture2D" uid="uid://f2s3aj45qd3y" path="res://assets/ui/options_button.png" id="3_tp26x"]
 [ext_resource type="Texture2D" uid="uid://dlljqfmaytyg0" path="res://assets/ui/quit_button.png" id="4_8pfeq"]
 [ext_resource type="AudioStream" uid="uid://bu1rt75pmtmea" path="res://assets/sounds/click1.wav" id="5_se3ta"]
@@ -38,10 +39,10 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="Label" type="Label" parent="VBoxContainer"]
+[node name="Title" type="TextureRect" parent="VBoxContainer"]
 layout_mode = 2
-text = "Wild Jam Thing (name wip)"
-horizontal_alignment = 1
+size_flags_horizontal = 4
+texture = ExtResource("3_2dxfd")
 
 [node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
 layout_mode = 2
