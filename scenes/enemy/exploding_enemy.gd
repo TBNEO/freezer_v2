@@ -88,8 +88,8 @@ func _on_explode_detect_body_entered(body: Node2D) -> void:
 	move_and_slide()
 	await get_tree().create_timer(1.0).timeout
 	animation_player.play("explode")
-	await animation_player.animation_finished
 	particles.restart()
+	await animation_player.animation_finished
 	if Settings.SFX_Enabled and Settings.SFX_Volume > 0:
 		audio.play()
 	if global_position.distance_to(body.global_position) < 75:

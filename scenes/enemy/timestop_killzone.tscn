@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dq383w4v8e508" path="res://assets/objects/mark_for_death.png" id="2_4a3uq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_augee"]
-size = Vector2(32, 32)
+size = Vector2(40, 40)
 
 [node name="TimestopKillzone" type="Area2D"]
 process_mode = 3
